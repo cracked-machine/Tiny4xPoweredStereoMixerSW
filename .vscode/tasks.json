@@ -2,63 +2,57 @@
     // See https://go.microsoft.com/fwlink/?LinkId=733558
     // for the documentation about the tasks.json format
     "version": "2.0.0",
+    "options": {
+        "env": {
+            "RMBUILD": "rm -rf /workspaces/Tiny4xPoweredStereoMixerSW/build",
+            "RMBUILDHOST": "rm -rf /workspaces/Tiny4xPoweredStereoMixerSW/buildhost",
+            "SETENV": ". /opt/esp/idf/export.sh",
+            "SETTARGET": "idf.py set-target esp32s3",
+            "BUILDTARGET": "1"
+        }
+    },
     "tasks": [
         {
-            "label": "build",
+            "options": {
+                "env": {
+                    "BUILDTARGET": "0"
+                }
+             },
+            "label": "build host",
             "type": "shell",
-            "command": [
-                "cd apps/${input:app} && ",
-                ". /opt/esp/idf/export.sh &&",
-                "idf.py build"
+            "command": [ 
+                "${RMBUILDHOST} && cmake -B buildhost -S . && cmake --build buildhost",
             ]
+        },
+        {
+            "label": "build target",
+            "type": "shell",
+            "command": "${RMBUILD} && ${SETENV} && ${SETTARGET} && idf.py build" 
         },
         {
             "label": "clean",
             "type": "shell",
-            "command": [
-                "cd apps/${input:app} && ",
-                ". /opt/esp/idf/export.sh &&",
-                "idf.py fullclean"
-            ]
+            "command": "${RMBUILD} && ${SETENV} && ${SETTARGET} && idf.py fullclean"
         },
         {
             "label": "flash",
             "type": "shell",
-            "command": [
-                "cd apps/${input:app} && ",
-                ". /opt/esp/idf/export.sh &&",
-                "idf.py flash"
-            ]
+            "command": "${SETENV} && ${SETTARGET} && idf.py flash"
         },
         {
             "label": "monitor",
             "type": "shell",
-            "command": [
-                "cd apps/${input:app} && ",
-                ". /opt/esp/idf/export.sh &&",
-                "idf.py monitor"
-            ]
+            "command": "${SETENV} && ${SETTARGET} && idf.py monitor" 
         },
         {
-            "label": "RUN ALL",
+            "label": "RUN ALL TARGET",
             "type": "shell",
             "dependsOrder": "sequence",
             "dependsOn":[
                 "fullclean",
-                "build",
+                "build target",
                 "flash",
                 "monitor"
-            ]
-        }
-    ],
-    "inputs": [
-        {
-            "type": "pickString",
-            "id": "app",
-            "description": "selct an app",
-            "options": [
-                "bitset_test",
-                "hello_world"
             ]
         }
     ]
