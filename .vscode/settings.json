@@ -1,0 +1,15 @@
+{
+    "terminal.integrated.inheritEnv": true,
+    "terminal.integrated.defaultProfile.linux": "bash",
+    "terminal.integrated.profiles.linux": {
+        "bash": {
+            "path": "/bin/bash",
+            "icon": "terminal-bash",
+            "args": [
+                "-l"
+            ]
+        }
+    },
+    "terminal.integrated.env.linux": {},
+
+}

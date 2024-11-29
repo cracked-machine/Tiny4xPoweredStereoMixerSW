@@ -1,0 +1,65 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "type": "shell",
+            "command": [
+                "cd apps/${input:app} && ",
+                ". /opt/esp/idf/export.sh &&",
+                "idf.py build"
+            ]
+        },
+        {
+            "label": "clean",
+            "type": "shell",
+            "command": [
+                "cd apps/${input:app} && ",
+                ". /opt/esp/idf/export.sh &&",
+                "idf.py fullclean"
+            ]
+        },
+        {
+            "label": "flash",
+            "type": "shell",
+            "command": [
+                "cd apps/${input:app} && ",
+                ". /opt/esp/idf/export.sh &&",
+                "idf.py flash"
+            ]
+        },
+        {
+            "label": "monitor",
+            "type": "shell",
+            "command": [
+                "cd apps/${input:app} && ",
+                ". /opt/esp/idf/export.sh &&",
+                "idf.py monitor"
+            ]
+        },
+        {
+            "label": "RUN ALL",
+            "type": "shell",
+            "dependsOrder": "sequence",
+            "dependsOn":[
+                "fullclean",
+                "build",
+                "flash",
+                "monitor"
+            ]
+        }
+    ],
+    "inputs": [
+        {
+            "type": "pickString",
+            "id": "app",
+            "description": "selct an app",
+            "options": [
+                "bitset_test",
+                "hello_world"
+            ]
+        }
+    ]
+}
