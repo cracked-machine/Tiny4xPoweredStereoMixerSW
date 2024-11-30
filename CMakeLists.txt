@@ -21,6 +21,8 @@ else()
     )
     FetchContent_MakeAvailable(googletest)
     
+    include(CTest)
+    
     add_subdirectory(components/dac7718)
 
 endif()

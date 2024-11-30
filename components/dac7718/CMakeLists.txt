@@ -20,5 +20,6 @@ else()
 
     include(GoogleTest)
     gtest_discover_tests(dac7718_tests)
+    add_test(NAME dac7718 COMMAND dac7718_tests)
 
 endif()
