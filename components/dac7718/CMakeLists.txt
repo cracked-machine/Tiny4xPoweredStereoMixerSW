@@ -8,7 +8,7 @@ if($ENV{BUILDTARGET})
 else()
 
     add_executable(dac7718_tests
-        /workspaces/Tiny4xPoweredStereoMixerSW/components/dac7718/src/dac7718.cpp
+        /workspaces/Tiny4xPoweredStereoMixerSW/components/dac7718/tests/test_dac7718.cpp
     )
     target_include_directories(dac7718_tests PUBLIC
         /workspaces/Tiny4xPoweredStereoMixerSW/components/dac7718/inc
