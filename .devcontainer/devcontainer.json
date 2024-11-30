@@ -14,9 +14,8 @@
                 "ms-vscode.cpptools",
                 "twxs.cmake",
                 "xaver.clang-format",
-                "espressif.esp-idf-extension",
                 "cschlosser.doxdocgen",
-                "matepek.vscode-catch2-test-adapter",
+                "yifei-zhang.cmake-test-tools",
                 "tomoki1207.pdf"
 
             ]
