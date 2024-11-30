@@ -15,9 +15,8 @@
                 "twxs.cmake",
                 "xaver.clang-format",
                 "cschlosser.doxdocgen",
-                "yifei-zhang.cmake-test-tools",
+                "matepek.vscode-catch2-test-adapter",
                 "tomoki1207.pdf"
-
             ]
         }
         

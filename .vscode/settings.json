@@ -1,4 +1,6 @@
 {
+    "testMate.cpp.test.executables": "{buildhost,Build,BUILD,out,Out,OUT}/**/*{tests,Test,TEST}*",
+    "testMate.cpp.log.logfile": "/tmp/testmate.log",
     "terminal.integrated.defaultProfile.linux": "bash",
     "terminal.integrated.profiles.linux": {
         "bash": {
