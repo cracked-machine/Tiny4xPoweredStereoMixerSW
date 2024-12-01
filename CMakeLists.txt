@@ -9,8 +9,8 @@ else()
     
     project(TinyMixer VERSION 1.0 LANGUAGES CXX)
 
-    set(CMAKE_CXX_STANDARD 14)
-    set(CMAKE_CXX_STANDARD_REQUIRED ON)
+    # set(CMAKE_CXX_STANDARD 14)
+    # set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
     include(FetchContent)
     FetchContent_Declare(
@@ -21,7 +21,7 @@ else()
     
     include(CTest)
     
-    add_subdirectory(components/dac7718)
+    add_subdirectory(components/dac7718/tests)
 
 endif()
 
