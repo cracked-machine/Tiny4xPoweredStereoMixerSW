@@ -31,7 +31,7 @@ TEST(Dac7718Suite, Dac7718Test)
     
     DAC7718::Packet p {
        true,
-       DAC7718::AddressField{ DAC7718::AddressType::Reg::ZERO_4 },
+       DAC7718::AddressType::Reg::ZERO_4,
        DAC7718::DataField{ std::bitset<12>{"100110111001"} }
     };
     auto [packet_bytes, packet_bits] = p.serialize();
@@ -48,8 +48,7 @@ TEST(Dac7718Suite, Dac7718ConfigPacketTest)
     DAC7718::ShiftRegisterBits expected_sr_bits{"100000001000000000000000"};
     
     DAC7718::ConfigPacket cdp{       
-        true,
-        DAC7718::ConfigDataField{}
+        true
     };
 
     auto [packet_bytes, packet_bits] = cdp.serialize();

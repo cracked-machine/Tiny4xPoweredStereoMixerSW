@@ -15,6 +15,9 @@ namespace DAC7718
 class AddressType
 {
 public:
+    static const size_t SIZE{5};
+    static const size_t OFFSET{16};
+
     // The list of Registers
     enum class Reg 
     { 
@@ -51,10 +54,10 @@ public:
         GAIN_7,
     };
     // Iterator needs to be given begin/end points, so you have to 
-    // sync this end limit with the last entry in EncapsulatedEnum::Reg
+    // sync this end limit with the last entry in AddressType::Reg
     typedef EnumIterator<Reg, static_cast<Reg>(0), Reg::GAIN_7> Iter;
-    // Return a U16 value depending on the Reg given
-    static std::bitset<5> getval(Reg k) 
+
+    static std::bitset<AddressType::SIZE> getval(Reg k) 
     { 
         // guarantee singleton creation
         [[maybe_unused]] static AddressType instance;
@@ -62,67 +65,67 @@ public:
         switch(k)
         {
             case Reg::CONFIG:
-                return std::bitset<5>{"00000"};
+                return std::bitset<AddressType::SIZE>{"00000"};
             case Reg::MONITOR:
-                return std::bitset<5>{"00001"};
+                return std::bitset<AddressType::SIZE>{"00001"};
             case Reg::GPIO:
-                return std::bitset<5>{"00010"};
+                return std::bitset<AddressType::SIZE>{"00010"};
             case Reg::OFFSET_DAC_A:
-                return std::bitset<5>{"00011"};
+                return std::bitset<AddressType::SIZE>{"00011"};
             case Reg::OFFSET_DAC_B:
-                return std::bitset<5>{"00100"};
+                return std::bitset<AddressType::SIZE>{"00100"};
             case Reg::SPI_MODE:
-                return std::bitset<5>{"00110"};
+                return std::bitset<AddressType::SIZE>{"00110"};
             case Reg::BROADCAST:
-                return std::bitset<5>{"00111"};
+                return std::bitset<AddressType::SIZE>{"00111"};
             case Reg::DAC_0_DATA:
-                return std::bitset<5>{"01000"};
+                return std::bitset<AddressType::SIZE>{"01000"};
             case Reg::DAC_1_DATA:
-                return std::bitset<5>{"01001"};
+                return std::bitset<AddressType::SIZE>{"01001"};
             case Reg::DAC_2_DATA:
-                return std::bitset<5>{"01010"};
+                return std::bitset<AddressType::SIZE>{"01010"};
             case Reg::DAC_3_DATA:
-                return std::bitset<5>{"01011"};
+                return std::bitset<AddressType::SIZE>{"01011"};
             case Reg::DAC_4_DATA:
-                return std::bitset<5>{"01100"};
+                return std::bitset<AddressType::SIZE>{"01100"};
             case Reg::DAC_5_DATA:
-                return std::bitset<5>{"01101"};
+                return std::bitset<AddressType::SIZE>{"01101"};
             case Reg::DAC_6_DATA:
-                return std::bitset<5>{"01110"};
+                return std::bitset<AddressType::SIZE>{"01110"};
             case Reg::DAC_7_DATA:
-                return std::bitset<5>{"01111"};
+                return std::bitset<AddressType::SIZE>{"01111"};
             case Reg::ZERO_0:
-                return std::bitset<5>{"10000"};
+                return std::bitset<AddressType::SIZE>{"10000"};
             case Reg::GAIN_0:
-                return std::bitset<5>{"11000"};
+                return std::bitset<AddressType::SIZE>{"11000"};
             case Reg::ZERO_1:
-                return std::bitset<5>{"10001"};
+                return std::bitset<AddressType::SIZE>{"10001"};
             case Reg::GAIN_1:
-                return std::bitset<5>{"11001"};
+                return std::bitset<AddressType::SIZE>{"11001"};
             case Reg::ZERO_2:
-                return std::bitset<5>{"10010"};
+                return std::bitset<AddressType::SIZE>{"10010"};
             case Reg::GAIN_2:
-                return std::bitset<5>{"11010"};
+                return std::bitset<AddressType::SIZE>{"11010"};
             case Reg::ZERO_3:
-                return std::bitset<5>{"10011"};
+                return std::bitset<AddressType::SIZE>{"10011"};
             case Reg::GAIN_3:
-                return std::bitset<5>{"11011"};
+                return std::bitset<AddressType::SIZE>{"11011"};
             case Reg::ZERO_4:
-                return std::bitset<5>{"10100"};
+                return std::bitset<AddressType::SIZE>{"10100"};
             case Reg::GAIN_4:
-                return std::bitset<5>{"11100"};
+                return std::bitset<AddressType::SIZE>{"11100"};
             case Reg::ZERO_5:
-                return std::bitset<5>{"10101"};
+                return std::bitset<AddressType::SIZE>{"10101"};
             case Reg::GAIN_5:
-                return std::bitset<5>{"11101"};
+                return std::bitset<AddressType::SIZE>{"11101"};
             case Reg::ZERO_6:
-                return std::bitset<5>{"10110"};
+                return std::bitset<AddressType::SIZE>{"10110"};
             case Reg::GAIN_6:
-                return std::bitset<5>{"11110"};
+                return std::bitset<AddressType::SIZE>{"11110"};
             case Reg::ZERO_7:
-                return std::bitset<5>{"10111"};
+                return std::bitset<AddressType::SIZE>{"10111"};
             case Reg::GAIN_7:
-                return std::bitset<5>{"11111"};
+                return std::bitset<AddressType::SIZE>{"11111"};
             default:
                 // this line can never be called but keeps compiler warning quiet
                  __builtin_unreachable();
@@ -131,7 +134,7 @@ public:
         __builtin_unreachable();
     } 
     // Return a Reg depending on the U16 value given
-    static Iter getReg(std::bitset<5> val)
+    static Iter getReg(std::bitset<AddressType::SIZE> val)
     {
         // guarantee singleton creation
         [[maybe_unused]] static AddressType instance;
@@ -145,41 +148,6 @@ private:
     AddressType() {}
 };
 
-/**
- * @brief Class for Address field in shift register
- *        width = 5, offset = 16
- */
-class AddressField
-{
-public:
-    AddressField() = default; 
-    /**
-     * @brief Construct a new Field object
-     * 
-     * @param data MSB <--- LSB
-     */
-    AddressField(AddressType::Reg reg):  m_reg(std::move(reg)) { };
-    AddressType::Reg get() const { return m_reg; }
-    constexpr size_t size() const { return 5; }
-    bool test(size_t pos) const { return AddressType::getval(m_reg).test(pos); }
-    const uint16_t m_offset{16};
-private:
-    AddressType::Reg m_reg;
-};
-
-
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-#ifdef __cplusplus
-}
-#endif
-
-
 } // namespace DAC7718
-
-
 
 #endif // __DAC7718_FIELDS_HPP__

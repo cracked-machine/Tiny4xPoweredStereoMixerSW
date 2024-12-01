@@ -4,7 +4,7 @@
 #include <bitset>
 #include <array>
 
-#include <dac7718_address_field.hpp>
+#include <dac7718_address_type.hpp>
 #include <dac7718_data_field.hpp>
 
 namespace DAC7718 
@@ -50,7 +50,7 @@ class Packet
 {
 public:
     Packet() = default;
-    Packet(bool rw, AddressField addr, DataField data);
+    Packet(bool rw, AddressType::Reg addr, DataField data);
     std::pair<ShiftRegisterBytes, ShiftRegisterBits> serialize() const;
 private:
     void serialize(ShiftRegisterBits &packet_bytes) const;
@@ -77,7 +77,7 @@ private:
      | 20 | 19 | 18 | 17 | 16 |
      * 
      */
-    AddressField m_addr;
+    AddressType::Reg m_addr;
 
     /**
      * @brief 12 bits Data bits (DB15:DB4)
@@ -100,8 +100,8 @@ private:
 class ConfigPacket: public Packet
 {
 public:
-    ConfigPacket(bool rw, ConfigDataField data) :
-        Packet(rw, AddressField{AddressType::Reg::CONFIG}, data)
+    ConfigPacket(bool rw, ConfigDataField data = ConfigDataField{}) :
+        Packet(rw, AddressType::Reg::CONFIG, data)
     {
     }
 };
