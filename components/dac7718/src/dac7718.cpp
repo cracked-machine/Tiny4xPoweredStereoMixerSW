@@ -4,55 +4,18 @@
 namespace DAC7718 
 {
 
-Packet::Packet(bool rw, AddressType::Reg addr, DataField data) :
-    m_rwbit(rw),
-    m_addr(std::move(addr)),
-    m_data(std::move(data))
-{ 
-}
-
-std::pair<ShiftRegisterBytes, ShiftRegisterBits> Packet::serialize() const
+/**
+ * @brief Explicit specialization of constructor for Configuration Register message
+ * 
+ * @tparam  Set to ConfigDataField. See Alias Template: ConfigPacket
+ * @param rw The read write bit
+ */
+template<> ConfigPacket::Packet(bool rw, Config::ConfigDataField data)
 {
-    ShiftRegisterBytes packet_bytes{0x00, 0x00, 0x00};
-    ShiftRegisterBits packet_bits;
+    m_rwbit = rw;
+    m_addr = AddressType::Reg::CONFIG;
+    m_data = std::move(data);
 
-    serialize(packet_bits);
-
-    int bitpos = 0;
-    for(int idx = 0; idx < 8; idx++) 
-    {
-        packet_bytes[2] |= packet_bits[bitpos] << idx;
-        bitpos++;
-    }
-    for(int idx = 0; idx < 8; idx++) 
-    {
-        packet_bytes[1] |= packet_bits[bitpos] << idx;
-        bitpos++;
-    }
-    for(int idx = 0; idx < 8; idx++) 
-    {
-        packet_bytes[0] |= packet_bits[bitpos] << idx;
-        bitpos++;
-    }  
-
-    return { packet_bytes, packet_bits };
-}
-void Packet::serialize(ShiftRegisterBits &packet_bits) const
-{
-    packet_bits.reset();
-    for (size_t idx = 0; idx < m_data.get().size(); idx++)
-    {
-        (m_data.test(idx)) ?
-            packet_bits[m_data.m_offset + idx] = true :
-            packet_bits[m_data.m_offset + idx] = false;
-    }    
-    for (size_t idx = 0; idx < AddressType::SIZE; idx++)
-    {
-        (AddressType::getval(m_addr).test(idx)) ?
-            packet_bits[AddressType::OFFSET + idx] = true :
-            packet_bits[AddressType::OFFSET + idx] = false;
-    }    
-    packet_bits[packet_bits.size() - 1] = m_rwbit[0];
 }
 
 } // namespace DAC7718

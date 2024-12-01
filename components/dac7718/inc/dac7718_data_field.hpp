@@ -1,5 +1,5 @@
-#ifndef __DATA_FIELD_HPP__
-#define __DATA_FIELD_HPP__
+#ifndef __DAC7718_DATA_FIELD_HPP__
+#define __DAC7718_DATA_FIELD_HPP__
 
 #include <bitset>
 
@@ -14,6 +14,11 @@ class DataField
 {
 public:
     DataField() = default; 
+    DataField& operator=(const DataField &other) 
+    { 
+        m_bits = other.m_bits;
+        return *this;
+    }
     /**
      * @brief Construct a new Field object
      * 
@@ -28,6 +33,7 @@ protected:
     std::bitset<12> m_bits;
 };
 
+namespace Config {
 
 enum class InputRegister{ INPUT_DATA_REGISTER = 0, DAC_DATA_REGISTER = 1 };
 enum class LatchData{ IDLE = 0, UPDATE = 1 };
@@ -90,9 +96,10 @@ public:
     std::bitset<12> get() const { return m_bits; }
     size_t size() const { return m_bits.size(); }
     bool test(size_t pos) const { return m_bits.test(pos); }
+
 };
 
-} // DAC7718
+} // namespace Config
+} // namespace DAC7718
 
-
-#endif // __DATA_FIELD_HPP__
+#endif // __DAC7718_DATA_FIELD_HPP__
