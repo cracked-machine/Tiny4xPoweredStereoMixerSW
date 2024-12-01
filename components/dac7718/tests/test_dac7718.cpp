@@ -30,9 +30,9 @@ TEST(Dac7718Suite, Dac7718Test)
     DAC7718::ShiftRegisterBits expected_sr_bits{"100101001001101110010000"};
     
     DAC7718::Packet p {
-       DAC7718::DataField{std::bitset<12>{"100110111001"}},
-       DAC7718::AddressField{std::bitset<5>{"10100"}},
-       true 
+       true,
+       DAC7718::AddressField{ DAC7718::AddressType::Reg::ZERO_4 },
+       DAC7718::DataField{ std::bitset<12>{"100110111001"} }
     };
     auto [packet_bytes, packet_bits] = p.serialize();
     print_bytes(packet_bytes);

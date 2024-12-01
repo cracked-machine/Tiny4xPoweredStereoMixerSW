@@ -4,40 +4,10 @@
 #include <bitset>
 #include <array>
 
+#include <dac7718_fields.hpp>
+
 namespace DAC7718 
 {
-
-template <size_t WIDTH, size_t OFFSET>
-class Field
-{
-public:
-    Field() = default; 
-    /**
-     * @brief Construct a new Field object
-     * 
-     * @param data MSB <--- LSB
-     */
-    Field(std::bitset<WIDTH> data):  m_bits(std::move(data)) { };
-    std::bitset<WIDTH> get() const { return m_bits; }
-    constexpr size_t size() const { return m_bits.size(); }
-    bool test(size_t pos) const { return m_bits.test(pos); }
-    uint16_t m_offset{OFFSET};
-private:
-    std::bitset<WIDTH> m_bits;
-};
-
-
-/**
- * @brief Alias Template for Data field in shift register
- *        width = 12, offset = 4
- * 
- */
-using DataField = typename DAC7718::Field<12, 4>;
-/**
- * @brief Alias Template for Address field in shift register
- *        width = 5, offset = 16
- */
-using AddressField = typename DAC7718::Field<5, 16>;
 
 #ifdef __cplusplus
 extern "C" {
@@ -79,7 +49,7 @@ class Packet
 {
 public:
     Packet() = default;
-    Packet(DataField data, AddressField addr, bool rw);
+    Packet(bool rw, AddressField addr, DataField data);
     std::pair<ShiftRegisterBytes, ShiftRegisterBits> serialize() const;
 private:
     void serialize(ShiftRegisterBits &packet_bytes) const;

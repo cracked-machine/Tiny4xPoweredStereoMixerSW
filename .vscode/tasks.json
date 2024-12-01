@@ -21,7 +21,7 @@
             "label": "build host",
             "type": "shell",
             "command": [ 
-                "${RMBUILDHOST} && cmake -B buildhost -S . && cmake --build buildhost",
+                "${RMBUILDHOST} && cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -B buildhost -S . && cmake --build buildhost",
             ]
         },
         {

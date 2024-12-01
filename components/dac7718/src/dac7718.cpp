@@ -4,12 +4,11 @@
 namespace DAC7718 
 {
 
-Packet::Packet(DataField data, AddressField addr, bool rw) :
-    m_data(std::move(data)),
+Packet::Packet(bool rw, AddressField addr, DataField data) :
+    m_rwbit(rw),
     m_addr(std::move(addr)),
-    m_rwbit(rw)
+    m_data(std::move(data))
 { 
-    // m_rwbit.set(0, rw); 
 }
 
 std::pair<ShiftRegisterBytes, ShiftRegisterBits> Packet::serialize() const
@@ -47,7 +46,7 @@ void Packet::serialize(ShiftRegisterBits &packet_bits) const
             packet_bits[m_data.m_offset + idx] = true :
             packet_bits[m_data.m_offset + idx] = false;
     }    
-    for (size_t idx = 0; idx < m_addr.get().size(); idx++)
+    for (size_t idx = 0; idx < m_addr.size(); idx++)
     {
         (m_addr.test(idx)) ?
             packet_bits[m_addr.m_offset + idx] = true :
