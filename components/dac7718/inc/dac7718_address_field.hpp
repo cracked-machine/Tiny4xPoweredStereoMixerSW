@@ -145,7 +145,10 @@ private:
     AddressType() {}
 };
 
-
+/**
+ * @brief Class for Address field in shift register
+ *        width = 5, offset = 16
+ */
 class AddressField
 {
 public:
@@ -165,35 +168,6 @@ private:
 };
 
 
-class DataField
-{
-public:
-    DataField() = default; 
-    /**
-     * @brief Construct a new Field object
-     * 
-     * @param data MSB <--- LSB
-     */
-    DataField(std::bitset<12> bits):  m_bits(std::move(bits)) { };
-    std::bitset<12> get() const { return m_bits; }
-    constexpr size_t size() const { return m_bits.size(); }
-    bool test(size_t pos) const { return m_bits.test(pos); }
-    const uint16_t m_offset{4};
-private:
-    std::bitset<12> m_bits;
-};
-
-/**
- * @brief Alias Template for Data field in shift register
- *        width = 12, offset = 4
- * 
- */
-// using DataField = typename DAC7718::Field<12, 4>;
-/**
- * @brief Alias Template for Address field in shift register
- *        width = 5, offset = 16
- */
-// using AddressField = typename DAC7718::Field<5, 16>;
 
 #ifdef __cplusplus
 extern "C" {

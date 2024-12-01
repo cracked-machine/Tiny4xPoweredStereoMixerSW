@@ -4,7 +4,8 @@
 #include <bitset>
 #include <array>
 
-#include <dac7718_fields.hpp>
+#include <dac7718_address_field.hpp>
+#include <dac7718_data_field.hpp>
 
 namespace DAC7718 
 {
@@ -94,6 +95,15 @@ private:
      */
     std::bitset<4> m_lsbpadding;
 
+};
+
+class ConfigPacket: public Packet
+{
+public:
+    ConfigPacket(bool rw, ConfigDataField data) :
+        Packet(rw, AddressField{AddressType::Reg::CONFIG}, data)
+    {
+    }
 };
 
 } // namespace DAC7718
