@@ -47,9 +47,10 @@ class Packet
 {
 public:
     /**
-     * @brief Should be explicitly specialized
+     * @brief Construct a new Packet object. Should be explicitly specialized
      * 
      * @param rw The read write bit
+     * @param data The data field type. Implicitly uses the type's constructor defaults.
      */
     Packet(bool rw, DATATYPE data = DATATYPE());
 
@@ -84,6 +85,9 @@ public:
 
         return { packet_bytes, packet_bits };
     }
+    
+    DATATYPE& data() { return m_data; }
+    
 private:
     /**
      * @brief Serialize this class into a 24-bit sequence and return it
@@ -155,7 +159,7 @@ private:
  * @brief Alias Template for Configuraion Register packets
  * 
  */
-using ConfigPacket = Packet<Config::ConfigDataField>;
+using ConfigPacket = Packet<ConfigData::ConfigDataField>;
 
 } // namespace DAC7718
 

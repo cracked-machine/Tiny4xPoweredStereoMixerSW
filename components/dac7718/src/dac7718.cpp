@@ -10,7 +10,7 @@ namespace DAC7718
  * @tparam  Set to ConfigDataField. See Alias Template: ConfigPacket
  * @param rw The read write bit
  */
-template<> ConfigPacket::Packet(bool rw, Config::ConfigDataField data)
+template<> ConfigPacket::Packet(bool rw, ConfigData::ConfigDataField data)
 {
     m_rwbit = rw;
     m_addr = AddressType::Reg::CONFIG;

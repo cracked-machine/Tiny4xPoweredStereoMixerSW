@@ -19,33 +19,71 @@ public:
         m_bits = other.m_bits;
         return *this;
     }
+
     /**
      * @brief Construct a new Field object
      * 
      * @param bits MSB <--- LSB
      */
-    DataField(std::bitset<12> bits):  m_bits(std::move(bits)) { };
-    virtual std::bitset<12> get() const { return m_bits; }
-    virtual size_t size() const { return m_bits.size(); }
-    virtual bool test(size_t pos) const { return m_bits.test(pos); }
+    DataField(std::bitset<12> bits):  
+        m_bits(std::move(bits)) 
+    { 
+    };
+
+    virtual std::bitset<12> get() const = 0;
+    virtual size_t size() const = 0;
+    virtual bool test(size_t pos) const = 0;
     const uint16_t m_offset{4};
 protected:
     std::bitset<12> m_bits;
 };
 
-namespace Config {
+namespace ConfigData {
 
-enum class InputRegister{ INPUT_DATA_REGISTER = 0, DAC_DATA_REGISTER = 1 };
-enum class LatchData{ IDLE = 0, UPDATE = 1 };
-enum class Reset{ IDLE = 0, POR = 1 };
-enum class PowerDownGroupA{ ON = 0, OFF = 1};
-enum class PowerDownGroupB{ ON = 0, OFF = 1};
-enum class SystemCallibration{ OFF = 0, ON = 1};
-enum class GainGroupA{ X6 = 0, x4 = 1};
-enum class GainGroupB{ X6 = 0, x4 = 1};
-enum class DisableSDO{ ON = 0, OFF = 1};
-enum class NoOpWrite{ OFF = 0, ENABLE = 1};
-enum class AuxWakeupPin{ DISABLED = 0, CSPIN = 1};
+enum class InputRegister{ 
+    INPUT_DATA_REGISTER = 0, 
+    DAC_DATA_REGISTER = 1 //default
+};
+enum class LatchData{ 
+    NORMAL = 0, // default
+    UPDATE = 1 
+};
+enum class Reset{ 
+    NORMAL = 0, // default
+    POR = 1 
+};
+enum class PowerDownGroupA{ 
+    PWRON = 0, // default
+    PWROFF = 1
+};
+enum class PowerDownGroupB{ 
+    PWRON = 0, // default
+    PWROFF = 1
+};
+enum class SystemCallibration{ 
+    DISABLED = 0, // default
+    ENABLED = 1
+};
+enum class GainGroupA{ 
+    X6 = 0, // default
+    x4 = 1
+};
+enum class GainGroupB{ 
+    X6 = 0, // default
+    x4 = 1
+};
+enum class SDO{ 
+    ENABLED = 0, // default
+    DISABLED = 1
+};
+enum class NoOpWrite{ 
+    DISABLED = 0, // default
+    ENABLED = 1
+};
+enum class AuxWakeupPin{ 
+    DISABLED = 0, // default
+    CSPIN = 1
+};
 
 class ConfigDataField : public DataField
 {
@@ -67,15 +105,15 @@ public:
      */
     ConfigDataField(
         InputRegister ab = InputRegister::DAC_DATA_REGISTER,
-        LatchData ld = LatchData::IDLE,
-        Reset rst = Reset::IDLE,
-        PowerDownGroupA pda = PowerDownGroupA::ON,
-        PowerDownGroupB pdb = PowerDownGroupB::ON,
-        SystemCallibration sce = SystemCallibration::OFF,
+        LatchData ld = LatchData::NORMAL,
+        Reset rst = Reset::NORMAL,
+        PowerDownGroupA pda = PowerDownGroupA::PWRON,
+        PowerDownGroupB pdb = PowerDownGroupB::PWRON,
+        SystemCallibration sce = SystemCallibration::DISABLED,
         GainGroupA gaina = GainGroupA::X6,
         GainGroupB gainb = GainGroupB::X6,
-        DisableSDO dsdo = DisableSDO::ON,
-        NoOpWrite nopwrite = NoOpWrite::OFF,
+        SDO dsdo = SDO::ENABLED,
+        NoOpWrite nopwrite = NoOpWrite::DISABLED,
         AuxWakeupPin w2 = AuxWakeupPin::DISABLED
     ) 
     {
@@ -103,10 +141,10 @@ public:
     void set_reset(Reset opt) { m_bits.set( 9, static_cast<bool>(opt) ); }
     void set_powerdown_groupa(PowerDownGroupB opt) { m_bits.set( 8, static_cast<bool>(opt) ); }
     void set_powerdown_groupb(PowerDownGroupA opt) { m_bits.set( 7, static_cast<bool>(opt) ); }
-    void set_callibration(bool enable) { m_bits.set( 6, static_cast<bool>(enable) ); }
+    void set_callibration(SystemCallibration opt) { m_bits.set( 6, static_cast<bool>(opt) ); }
     void set_gain_groupa(GainGroupA opt) { m_bits.set( 4, static_cast<bool>(opt) ); }
     void set_gain_groupb(GainGroupB opt) { m_bits.set( 3, static_cast<bool>(opt) ); }
-    void set_dsdo(DisableSDO opt) { m_bits.set( 2, static_cast<bool>(opt) ); }
+    void set_dsdo(SDO opt) { m_bits.set( 2, static_cast<bool>(opt) ); }
     void set_noopwrite(NoOpWrite opt) { m_bits.set( 1, static_cast<bool>(opt) ); }
     void set_aux_wakeup(AuxWakeupPin opt) { m_bits.set( 0, static_cast<bool>(opt) ); }
 };
