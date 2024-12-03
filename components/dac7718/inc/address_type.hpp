@@ -4,7 +4,7 @@
 #include <bitset>
 #include <array>
 
-#include <dac7718_iter.hpp>
+#include <iterator.hpp>
 
 namespace DAC7718 
 {

@@ -4,8 +4,8 @@
 #include <bitset>
 #include <array>
 
-#include <dac7718_address_type.hpp>
-#include <dac7718_data_field.hpp>
+#include <address_type.hpp>
+#include <config_data_field.hpp>
 
 namespace DAC7718 
 {
