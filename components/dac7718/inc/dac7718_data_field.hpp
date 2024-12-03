@@ -135,19 +135,24 @@ public:
     size_t size() const { return m_bits.size(); }
     bool test(size_t pos) const { return m_bits.test(pos); }
 
+
+
+    
     // data bit mutators
-    void set_input_register(InputRegister opt) { m_bits.set( 11, static_cast<bool>(opt) ); }
-    void set_latch_data(LatchData opt) { m_bits.set( 10, static_cast<bool>(opt) ); }
-    void set_reset(Reset opt) { m_bits.set( 9, static_cast<bool>(opt) ); }
-    void set_powerdown_groupa(PowerDownGroupB opt) { m_bits.set( 8, static_cast<bool>(opt) ); }
-    void set_powerdown_groupb(PowerDownGroupA opt) { m_bits.set( 7, static_cast<bool>(opt) ); }
-    void set_callibration(SystemCallibration opt) { m_bits.set( 6, static_cast<bool>(opt) ); }
-    void set_gain_groupa(GainGroupA opt) { m_bits.set( 4, static_cast<bool>(opt) ); }
-    void set_gain_groupb(GainGroupB opt) { m_bits.set( 3, static_cast<bool>(opt) ); }
-    void set_dsdo(SDO opt) { m_bits.set( 2, static_cast<bool>(opt) ); }
-    void set_noopwrite(NoOpWrite opt) { m_bits.set( 1, static_cast<bool>(opt) ); }
-    void set_aux_wakeup(AuxWakeupPin opt) { m_bits.set( 0, static_cast<bool>(opt) ); }
+    void set(InputRegister opt) { m_bits.set( 11, static_cast<bool>(opt) ); }
+    void set(LatchData opt) { m_bits.set( 10, static_cast<bool>(opt) ); }
+    void set(Reset opt) { m_bits.set( 9, static_cast<bool>(opt) ); }
+    void set(PowerDownGroupA opt) { m_bits.set( 8, static_cast<bool>(opt) ); }
+    void set(PowerDownGroupB opt) { m_bits.set( 7, static_cast<bool>(opt) ); }
+    void set(SystemCallibration opt) { m_bits.set( 6, static_cast<bool>(opt) ); }
+    void set(GainGroupA opt) { m_bits.set( 4, static_cast<bool>(opt) ); }
+    void set(GainGroupB opt) { m_bits.set( 3, static_cast<bool>(opt) ); }
+    void set(SDO opt) { m_bits.set( 2, static_cast<bool>(opt) ); }
+    void set(NoOpWrite opt) { m_bits.set( 1, static_cast<bool>(opt) ); }
+    void set(AuxWakeupPin opt) { m_bits.set( 0, static_cast<bool>(opt) ); }
 };
+
+
 
 } // namespace Config
 } // namespace DAC7718
