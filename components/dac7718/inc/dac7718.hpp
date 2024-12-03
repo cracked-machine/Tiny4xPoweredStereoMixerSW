@@ -6,6 +6,7 @@
 
 #include <address_type.hpp>
 #include <config_data_field.hpp>
+#include <monitor_data_field.hpp>
 
 namespace DAC7718 
 {
@@ -97,11 +98,11 @@ private:
     void serialize(ShiftRegisterBits &packet_bits) const
     {
         packet_bits.reset();
-        for (size_t idx = 0; idx < m_data.get().size(); idx++)
+        for (size_t idx = 0; idx < DATATYPE::SIZE; idx++)
         {
             (m_data.test(idx)) ?
-                packet_bits[m_data.m_offset + idx] = true :
-                packet_bits[m_data.m_offset + idx] = false;
+                packet_bits[DATATYPE::OFFSET + idx] = true :
+                packet_bits[DATATYPE::OFFSET + idx] = false;
         }    
         for (size_t idx = 0; idx < AddressType::SIZE; idx++)
         {
@@ -159,7 +160,8 @@ private:
  * @brief Alias Template for Configuraion Register packets
  * 
  */
-using ConfigPacket = Packet<ConfigData::ConfigDataField>;
+using ConfigPacket = Packet<Config::Reg>;
+using MonitorPacket = Packet<Monitor::Data>;
 
 } // namespace DAC7718
 

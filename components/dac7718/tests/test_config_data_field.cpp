@@ -1,38 +1,17 @@
 #include <gtest/gtest.h>
 #include <dac7718.hpp>
+#include <helpers.hpp>
 
-// @brief Print out the provided bitset as bytes
-// @param pattern The bitset to print
 
-void print_bits(DAC7718::ShiftRegisterBits &packet_bits)
+
+TEST(Dac7718ConfigPacket, Defaults)
 {
-    std::cerr << "Printing " << packet_bits.size() << " bits:" << std::endl;
-    std::cerr << "LSB ------------------ MSB " << std::endl;
-    std::string packet_bits_str =  packet_bits.to_string();
-    packet_bits_str.insert(8, " ");
-    packet_bits_str.insert(16, " ");
-    std::cerr << packet_bits_str;
-    std::cerr << std::endl;
-}
-
-void print_bytes(const DAC7718::ShiftRegisterBytes &bytes)
-{
-    for(auto byte: bytes)
-    {
-        std::cout << std::hex << std::setw(2) << std::setfill('0') << unsigned(byte);
-    }
-    std::cout << std::dec << std::endl;
-}
-
-
-TEST(Dac7718Suite, ConfigPacketDefaults)
-{
-    DAC7718::ConfigPacket cdp{ true };
+    DAC7718::ConfigPacket config_packet{ true };
 
     DAC7718::ShiftRegisterBytes expected_sr_bytes{0x80, 0x80, 0x00};
     DAC7718::ShiftRegisterBits expected_sr_bits{0b100000001000000000000000};
     
-    auto [packet_bytes, packet_bits] = cdp.serialize();
+    auto [packet_bytes, packet_bits] = config_packet.serialize();
     print_bytes(packet_bytes);
     print_bits(packet_bits);
 
@@ -40,16 +19,17 @@ TEST(Dac7718Suite, ConfigPacketDefaults)
     ASSERT_EQ(packet_bytes,expected_sr_bytes);
 
 }
-TEST(Dac7718Suite,ConfigPacketInputRegister)
+
+TEST(Dac7718ConfigPacket, InputRegister)
 {
-    DAC7718::ConfigPacket cdp{ true };
+    DAC7718::ConfigPacket config_packet{ true };
  
     DAC7718::ShiftRegisterBytes expected_sr_bytes{0x80, 0x00, 0x00};
     DAC7718::ShiftRegisterBits expected_sr_bits{0b100000000000000000000000};
 
-    cdp.data().set(DAC7718::ConfigData::InputRegister::INPUT_DATA_REGISTER);
+    config_packet.data().set(DAC7718::Config::Bit::InputRegister::INPUT_DATA_REGISTER);
     
-    auto [packet_bytes, packet_bits] = cdp.serialize();
+    auto [packet_bytes, packet_bits] = config_packet.serialize();
     print_bytes(packet_bytes);
     print_bits(packet_bits);
 
@@ -58,16 +38,16 @@ TEST(Dac7718Suite,ConfigPacketInputRegister)
 
 }
 
-TEST(Dac7718Suite, ConfigPacketLatchData)
+TEST(Dac7718ConfigPacket, LatchData)
 {
-    DAC7718::ConfigPacket cdp{ true };
+    DAC7718::ConfigPacket config_packet{ true };
 
     DAC7718::ShiftRegisterBytes expected_sr_bytes{0x80, 0xC0, 0x00};
     DAC7718::ShiftRegisterBits expected_sr_bits{0b100000001100000000000000};
 
-    cdp.data().set(DAC7718::ConfigData::LatchData::UPDATE);
+    config_packet.data().set(DAC7718::Config::Bit::LatchData::UPDATE);
     
-    auto [packet_bytes, packet_bits] = cdp.serialize();
+    auto [packet_bytes, packet_bits] = config_packet.serialize();
     print_bytes(packet_bytes);
     print_bits(packet_bits);
 
@@ -76,16 +56,16 @@ TEST(Dac7718Suite, ConfigPacketLatchData)
     
 }
 
-TEST(Dac7718Suite, ConfigPacketReset)
+TEST(Dac7718ConfigPacket, Reset)
 {
-    DAC7718::ConfigPacket cdp{ true };
+    DAC7718::ConfigPacket config_packet{ true };
 
     DAC7718::ShiftRegisterBytes expected_sr_bytes{0x80, 0xA0, 0x00};
     DAC7718::ShiftRegisterBits expected_sr_bits{0b100000001010000000000000};
 
-    cdp.data().set(DAC7718::ConfigData::Reset::POR);
+    config_packet.data().set(DAC7718::Config::Bit::Reset::POR);
     
-    auto [packet_bytes, packet_bits] = cdp.serialize();
+    auto [packet_bytes, packet_bits] = config_packet.serialize();
     print_bytes(packet_bytes);
     print_bits(packet_bits);
 
@@ -94,16 +74,16 @@ TEST(Dac7718Suite, ConfigPacketReset)
     
 }
 
-TEST(Dac7718Suite, ConfigPacketPwrDwnA)
+TEST(Dac7718ConfigPacket, PwrDwnA)
 {
-    DAC7718::ConfigPacket cdp{ true };
+    DAC7718::ConfigPacket config_packet{ true };
 
     DAC7718::ShiftRegisterBytes expected_sr_bytes{0x80, 0x90, 0x00};
     DAC7718::ShiftRegisterBits expected_sr_bits{0b100000001001000000000000};
 
-    cdp.data().set(DAC7718::ConfigData::PowerDownGroupA::PWROFF);
+    config_packet.data().set(DAC7718::Config::Bit::PowerDownGroupA::PWROFF);
     
-    auto [packet_bytes, packet_bits] = cdp.serialize();
+    auto [packet_bytes, packet_bits] = config_packet.serialize();
     print_bytes(packet_bytes);
     print_bits(packet_bits);
 
@@ -112,16 +92,16 @@ TEST(Dac7718Suite, ConfigPacketPwrDwnA)
     
 }
 
-TEST(Dac7718Suite, ConfigPacketPwrDwnB)
+TEST(Dac7718ConfigPacket, PwrDwnB)
 {
-    DAC7718::ConfigPacket cdp{ true };
+    DAC7718::ConfigPacket config_packet{ true };
 
     DAC7718::ShiftRegisterBytes expected_sr_bytes{0x80, 0x88, 0x00};
     DAC7718::ShiftRegisterBits expected_sr_bits{0b100000001000100000000000};
 
-    cdp.data().set(DAC7718::ConfigData::PowerDownGroupB::PWROFF);
+    config_packet.data().set(DAC7718::Config::Bit::PowerDownGroupB::PWROFF);
     
-    auto [packet_bytes, packet_bits] = cdp.serialize();
+    auto [packet_bytes, packet_bits] = config_packet.serialize();
     print_bytes(packet_bytes);
     print_bits(packet_bits);
 
@@ -130,16 +110,16 @@ TEST(Dac7718Suite, ConfigPacketPwrDwnB)
     
 }
 
-TEST(Dac7718Suite, ConfigPacketSCE)
+TEST(Dac7718ConfigPacket, SCE)
 {
-    DAC7718::ConfigPacket cdp{ true };
+    DAC7718::ConfigPacket config_packet{ true };
 
     DAC7718::ShiftRegisterBytes expected_sr_bytes{0x80, 0x84, 0x00};
     DAC7718::ShiftRegisterBits expected_sr_bits{0b100000001000010000000000};
 
-    cdp.data().set(DAC7718::ConfigData::SystemCallibration::ENABLED);
+    config_packet.data().set(DAC7718::Config::Bit::SystemCallibration::ENABLED);
     
-    auto [packet_bytes, packet_bits] = cdp.serialize();
+    auto [packet_bytes, packet_bits] = config_packet.serialize();
     print_bytes(packet_bytes);
     print_bits(packet_bits);
 
@@ -148,16 +128,16 @@ TEST(Dac7718Suite, ConfigPacketSCE)
     
 }
 
-TEST(Dac7718Suite, ConfigPacketGainA)
+TEST(Dac7718ConfigPacket, GainA)
 {
-    DAC7718::ConfigPacket cdp{ true };
+    DAC7718::ConfigPacket config_packet{ true };
 
     DAC7718::ShiftRegisterBytes expected_sr_bytes{0x80, 0x81, 0x00};
     DAC7718::ShiftRegisterBits expected_sr_bits{0b100000001000000100000000};
 
-    cdp.data().set(DAC7718::ConfigData::GainGroupA::x4);
+    config_packet.data().set(DAC7718::Config::Bit::GainGroupA::x4);
     
-    auto [packet_bytes, packet_bits] = cdp.serialize();
+    auto [packet_bytes, packet_bits] = config_packet.serialize();
     print_bytes(packet_bytes);
     print_bits(packet_bits);
 
@@ -166,16 +146,16 @@ TEST(Dac7718Suite, ConfigPacketGainA)
     
 }
 
-TEST(Dac7718Suite, ConfigPacketGainB)
+TEST(Dac7718ConfigPacket, GainB)
 {
-    DAC7718::ConfigPacket cdp{ true };
+    DAC7718::ConfigPacket config_packet{ true };
 
     DAC7718::ShiftRegisterBytes expected_sr_bytes{0x80, 0x80, 0x80};
     DAC7718::ShiftRegisterBits expected_sr_bits{0b100000001000000010000000};
 
-    cdp.data().set(DAC7718::ConfigData::GainGroupB::x4);
+    config_packet.data().set(DAC7718::Config::Bit::GainGroupB::x4);
     
-    auto [packet_bytes, packet_bits] = cdp.serialize();
+    auto [packet_bytes, packet_bits] = config_packet.serialize();
     print_bytes(packet_bytes);
     print_bits(packet_bits);
 
@@ -184,16 +164,16 @@ TEST(Dac7718Suite, ConfigPacketGainB)
     
 }
 
-TEST(Dac7718Suite, ConfigPacketSDO)
+TEST(Dac7718ConfigPacket, SDO)
 {
-    DAC7718::ConfigPacket cdp{ true };
+    DAC7718::ConfigPacket config_packet{ true };
 
     DAC7718::ShiftRegisterBytes expected_sr_bytes{0x80, 0x80, 0x40};
     DAC7718::ShiftRegisterBits expected_sr_bits{0b100000001000000001000000};
 
-    cdp.data().set(DAC7718::ConfigData::SDO::DISABLED);
+    config_packet.data().set(DAC7718::Config::Bit::SDO::DISABLED);
     
-    auto [packet_bytes, packet_bits] = cdp.serialize();
+    auto [packet_bytes, packet_bits] = config_packet.serialize();
     print_bytes(packet_bytes);
     print_bits(packet_bits);
 
@@ -202,16 +182,16 @@ TEST(Dac7718Suite, ConfigPacketSDO)
     
 }
 
-TEST(Dac7718Suite, ConfigPacketNOOPWrite)
+TEST(Dac7718ConfigPacket, NOOPWrite)
 {
-    DAC7718::ConfigPacket cdp{ true };
+    DAC7718::ConfigPacket config_packet{ true };
 
     DAC7718::ShiftRegisterBytes expected_sr_bytes{0x80, 0x80, 0x20};
     DAC7718::ShiftRegisterBits expected_sr_bits{0b100000001000000000100000};
 
-    cdp.data().set(DAC7718::ConfigData::NoOpWrite::ENABLED);
+    config_packet.data().set(DAC7718::Config::Bit::NoOpWrite::ENABLED);
     
-    auto [packet_bytes, packet_bits] = cdp.serialize();
+    auto [packet_bytes, packet_bits] = config_packet.serialize();
     print_bytes(packet_bytes);
     print_bits(packet_bits);
 
@@ -220,16 +200,16 @@ TEST(Dac7718Suite, ConfigPacketNOOPWrite)
     
 }
 
-TEST(Dac7718Suite, ConfigPacketAuxWakeup)
+TEST(Dac7718ConfigPacket, AuxWakeup)
 {
-    DAC7718::ConfigPacket cdp{ true };
+    DAC7718::ConfigPacket config_packet{ true };
 
     DAC7718::ShiftRegisterBytes expected_sr_bytes{0x80, 0x80, 0x10};
     DAC7718::ShiftRegisterBits expected_sr_bits{0b100000001000000000010000};
 
-    cdp.data().set(DAC7718::ConfigData::AuxWakeupPin::CSPIN);
+    config_packet.data().set(DAC7718::Config::Bit::AuxWakeupPin::CSPIN);
     
-    auto [packet_bytes, packet_bits] = cdp.serialize();
+    auto [packet_bytes, packet_bits] = config_packet.serialize();
     print_bytes(packet_bytes);
     print_bits(packet_bits);
 

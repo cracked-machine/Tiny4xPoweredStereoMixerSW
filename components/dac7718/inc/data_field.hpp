@@ -8,11 +8,13 @@ namespace DAC7718
 
 /**
  * @brief Base class for data field in shift register
- *        width = 5, offset = 16
  */
 class DataField
 {
 public:
+    static const size_t SIZE{12};
+    static const size_t OFFSET{4};
+
     DataField() = default; 
     DataField& operator=(const DataField &other) 
     { 
@@ -25,17 +27,19 @@ public:
      * 
      * @param bits MSB <--- LSB
      */
-    DataField(std::bitset<12> bits):  
+    DataField(std::bitset<SIZE> bits):  
         m_bits(std::move(bits)) 
     { 
     };
 
-    virtual std::bitset<12> get() const = 0;
-    virtual size_t size() const = 0;
+    virtual std::bitset<SIZE> get() const = 0;
+    // virtual size_t size() const = 0;
     virtual bool test(size_t pos) const = 0;
-    const uint16_t m_offset{4};
+    // const uint16_t m_offset{4};
+
+
 protected:
-    std::bitset<12> m_bits;
+    std::bitset<SIZE> m_bits;
 };
 
 } // namespace DAC7718

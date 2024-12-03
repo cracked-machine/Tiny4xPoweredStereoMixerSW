@@ -4,8 +4,8 @@
 #include <data_field.hpp>
 
 namespace DAC7718 {
-namespace ConfigData {
-
+namespace Config {
+namespace Bit {
 enum class InputRegister{ 
     INPUT_DATA_REGISTER = 0, 
     DAC_DATA_REGISTER = 1 //default
@@ -50,8 +50,9 @@ enum class AuxWakeupPin{
     DISABLED = 0, // default
     CSPIN = 1
 };
+} // namespace Bit
 
-class ConfigDataField : public DataField
+class Reg : public DataField
 {
 public: 
     /**
@@ -69,18 +70,18 @@ public:
      * @param nopwrite Force a NOOP on the next write operation. Default: OFF.
      * @param w2 If the WAKEUP pin is tied high, configure CS pin to be used as WAKEUP pin. Default: DISABLED
      */
-    ConfigDataField(
-        InputRegister ab = InputRegister::DAC_DATA_REGISTER,
-        LatchData ld = LatchData::NORMAL,
-        Reset rst = Reset::NORMAL,
-        PowerDownGroupA pda = PowerDownGroupA::PWRON,
-        PowerDownGroupB pdb = PowerDownGroupB::PWRON,
-        SystemCallibration sce = SystemCallibration::DISABLED,
-        GainGroupA gaina = GainGroupA::X6,
-        GainGroupB gainb = GainGroupB::X6,
-        SDO dsdo = SDO::ENABLED,
-        NoOpWrite nopwrite = NoOpWrite::DISABLED,
-        AuxWakeupPin w2 = AuxWakeupPin::DISABLED
+    Reg(
+        Bit::InputRegister ab = Bit::InputRegister::DAC_DATA_REGISTER,
+        Bit::LatchData ld = Bit::LatchData::NORMAL,
+        Bit::Reset rst = Bit::Reset::NORMAL,
+        Bit::PowerDownGroupA pda = Bit::PowerDownGroupA::PWRON,
+        Bit::PowerDownGroupB pdb = Bit::PowerDownGroupB::PWRON,
+        Bit::SystemCallibration sce = Bit::SystemCallibration::DISABLED,
+        Bit::GainGroupA gaina = Bit::GainGroupA::X6,
+        Bit::GainGroupB gainb = Bit::GainGroupB::X6,
+        Bit::SDO dsdo = Bit::SDO::ENABLED,
+        Bit::NoOpWrite nopwrite = Bit::NoOpWrite::DISABLED,
+        Bit::AuxWakeupPin w2 = Bit::AuxWakeupPin::DISABLED
     ) 
     {
         m_bits.set( 11, static_cast<bool>(ab) );        // DB15
@@ -97,22 +98,21 @@ public:
         m_bits.set( 0, static_cast<bool>(w2) );         // DB4
     }
 
-    std::bitset<12> get() const { return m_bits; }
-    size_t size() const { return m_bits.size(); }
+    std::bitset<SIZE> get() const { return m_bits; }
     bool test(size_t pos) const { return m_bits.test(pos); }
     
     // data bit mutators
-    void set(InputRegister opt) { m_bits.set( 11, static_cast<bool>(opt) ); }
-    void set(LatchData opt) { m_bits.set( 10, static_cast<bool>(opt) ); }
-    void set(Reset opt) { m_bits.set( 9, static_cast<bool>(opt) ); }
-    void set(PowerDownGroupA opt) { m_bits.set( 8, static_cast<bool>(opt) ); }
-    void set(PowerDownGroupB opt) { m_bits.set( 7, static_cast<bool>(opt) ); }
-    void set(SystemCallibration opt) { m_bits.set( 6, static_cast<bool>(opt) ); }
-    void set(GainGroupA opt) { m_bits.set( 4, static_cast<bool>(opt) ); }
-    void set(GainGroupB opt) { m_bits.set( 3, static_cast<bool>(opt) ); }
-    void set(SDO opt) { m_bits.set( 2, static_cast<bool>(opt) ); }
-    void set(NoOpWrite opt) { m_bits.set( 1, static_cast<bool>(opt) ); }
-    void set(AuxWakeupPin opt) { m_bits.set( 0, static_cast<bool>(opt) ); }
+    void set(Bit::InputRegister opt) { m_bits.set( 11, static_cast<bool>(opt) ); }
+    void set(Bit::LatchData opt) { m_bits.set( 10, static_cast<bool>(opt) ); }
+    void set(Bit::Reset opt) { m_bits.set( 9, static_cast<bool>(opt) ); }
+    void set(Bit::PowerDownGroupA opt) { m_bits.set( 8, static_cast<bool>(opt) ); }
+    void set(Bit::PowerDownGroupB opt) { m_bits.set( 7, static_cast<bool>(opt) ); }
+    void set(Bit::SystemCallibration opt) { m_bits.set( 6, static_cast<bool>(opt) ); }
+    void set(Bit::GainGroupA opt) { m_bits.set( 4, static_cast<bool>(opt) ); }
+    void set(Bit::GainGroupB opt) { m_bits.set( 3, static_cast<bool>(opt) ); }
+    void set(Bit::SDO opt) { m_bits.set( 2, static_cast<bool>(opt) ); }
+    void set(Bit::NoOpWrite opt) { m_bits.set( 1, static_cast<bool>(opt) ); }
+    void set(Bit::AuxWakeupPin opt) { m_bits.set( 0, static_cast<bool>(opt) ); }
 };
 
 } // namespace Config
