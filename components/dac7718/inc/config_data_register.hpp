@@ -6,6 +6,7 @@
 namespace DAC7718 {
 namespace Config {
 namespace Bit {
+    
 enum class InputRegister{ 
     INPUT_DATA_REGISTER = 0, 
     DAC_DATA_REGISTER = 1 //default

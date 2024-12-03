@@ -3,8 +3,9 @@ else()
 
     add_executable(dac7718_tests
         /workspaces/Tiny4xPoweredStereoMixerSW/components/dac7718/tests/helpers.cpp
-        /workspaces/Tiny4xPoweredStereoMixerSW/components/dac7718/tests/test_config_data_field.cpp
-        /workspaces/Tiny4xPoweredStereoMixerSW/components/dac7718/tests/test_monitor_data_field.cpp
+        /workspaces/Tiny4xPoweredStereoMixerSW/components/dac7718/tests/test_config_data_register.cpp
+        /workspaces/Tiny4xPoweredStereoMixerSW/components/dac7718/tests/test_monitor_data_register.cpp
+        /workspaces/Tiny4xPoweredStereoMixerSW/components/dac7718/tests/test_gpio_register.cpp
         
         /workspaces/Tiny4xPoweredStereoMixerSW/components/dac7718/src/dac7718.cpp
     )

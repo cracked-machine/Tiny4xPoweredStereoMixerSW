@@ -24,4 +24,11 @@ template<> MonitorPacket::Packet(bool rw, Monitor::Data data)
     m_data = std::move(data);
 }
 
+template<> GPIOPacket::Packet(bool rw, GPIO::Reg data)
+{
+    m_rwbit = rw;
+    m_addr = AddressType::Reg::GPIO;
+    m_data = std::move(data);
+}
+
 } // namespace DAC7718
