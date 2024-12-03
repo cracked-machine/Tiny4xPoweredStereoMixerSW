@@ -1,5 +1,5 @@
-#ifndef __DAC7718_ITER_HPP__
-#define __DAC7718_ITER_HPP__
+#ifndef __DAC7718_ENUM_ITERATOR_HPP__
+#define __DAC7718_ENUM_ITERATOR_HPP__
 
 namespace DAC7718 
 {
@@ -28,4 +28,4 @@ public:
 
 } // namespace DAC7718
 
-#endif // __DAC7718_ITER_HPP__
+#endif // __DAC7718_ENUM_ITERATOR_HPP__

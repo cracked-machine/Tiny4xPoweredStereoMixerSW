@@ -1,10 +1,10 @@
-#ifndef __DAC7718_FIELDS_HPP__
-#define __DAC7718_FIELDS_HPP__
+#ifndef __DAC7718_ADDRESS_REGISTER_HPP__
+#define __DAC7718_ADDRESS_REGISTER_HPP__
 
 #include <bitset>
 #include <array>
 
-#include <iterator.hpp>
+#include <enum_iterator.hpp>
 
 namespace DAC7718 
 {
@@ -150,4 +150,4 @@ private:
 
 } // namespace DAC7718
 
-#endif // __DAC7718_FIELDS_HPP__
+#endif // __DAC7718_ADDRESS_REGISTER_HPP__

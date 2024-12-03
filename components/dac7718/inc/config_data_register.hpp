@@ -1,7 +1,7 @@
-#ifndef __DAC7718_CONFIG_DATA_FIELD_HPP__
-#define __DAC7718_CONFIG_DATA_FIELD_HPP__
+#ifndef __DAC7718_CONFIG_DATA_REGISTER_HPP__
+#define __DAC7718_CONFIG_DATA_REGISTER_HPP__
 
-#include <data_field.hpp>
+#include <base_data_register.hpp>
 
 namespace DAC7718 {
 namespace Config {
@@ -52,7 +52,7 @@ enum class AuxWakeupPin{
 };
 } // namespace Bit
 
-class Reg : public DataField
+class Reg : public BaseDataRegister
 {
 public: 
     /**
@@ -119,4 +119,4 @@ public:
 } // namespace DAC7718
 
 
-#endif // __DAC7718_CONFIG_DATA_FIELD_HPP__
+#endif // __DAC7718_CONFIG_DATA_REGISTER_HPP__

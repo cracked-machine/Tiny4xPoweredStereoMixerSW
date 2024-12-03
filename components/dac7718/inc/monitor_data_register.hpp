@@ -1,12 +1,12 @@
-#ifndef __DAC7718_MONITOR_DATA_FIELD_HPP__
-#define __DAC7718_MONITOR_DATA_FIELD_HPP__
+#ifndef __DAC7718_MONITOR_DATA_REGISTER_HPP__
+#define __DAC7718_MONITOR_DATA_REGISTER_HPP__
 
-#include <data_field.hpp>
+#include <base_data_register.hpp>
 
 namespace DAC7718 {
 namespace Monitor {
 
-class Data : public DataField
+class Data : public BaseDataRegister
 {
 public:
     enum class Reg
@@ -86,4 +86,4 @@ public:
 } // namespace MonitorData
 } // namespace DAC7718
 
-#endif // __DAC7718_MONITOR_DATA_FIELD_HPP__
+#endif // __DAC7718_MONITOR_DATA_REGISTER_HPP__

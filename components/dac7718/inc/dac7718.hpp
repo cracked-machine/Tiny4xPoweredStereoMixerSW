@@ -4,9 +4,9 @@
 #include <bitset>
 #include <array>
 
-#include <address_type.hpp>
-#include <config_data_field.hpp>
-#include <monitor_data_field.hpp>
+#include <address_register.hpp>
+#include <config_data_register.hpp>
+#include <monitor_data_register.hpp>
 
 namespace DAC7718 
 {

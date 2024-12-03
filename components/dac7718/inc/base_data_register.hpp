@@ -1,5 +1,5 @@
-#ifndef __DAC7718_DATA_FIELD_HPP__
-#define __DAC7718_DATA_FIELD_HPP__
+#ifndef __DAC7718_BASE_DATA_REGISTER_HPP__
+#define __DAC7718_BASE_DATA_REGISTER_HPP__
 
 #include <bitset>
 
@@ -9,14 +9,14 @@ namespace DAC7718
 /**
  * @brief Base class for data field in shift register
  */
-class DataField
+class BaseDataRegister
 {
 public:
     static const size_t SIZE{12};
     static const size_t OFFSET{4};
 
-    DataField() = default; 
-    DataField& operator=(const DataField &other) 
+    BaseDataRegister() = default; 
+    BaseDataRegister& operator=(const BaseDataRegister &other) 
     { 
         m_bits = other.m_bits;
         return *this;
@@ -27,7 +27,7 @@ public:
      * 
      * @param bits MSB <--- LSB
      */
-    DataField(std::bitset<SIZE> bits):  
+    BaseDataRegister(std::bitset<SIZE> bits):  
         m_bits(std::move(bits)) 
     { 
     };
@@ -44,4 +44,4 @@ protected:
 
 } // namespace DAC7718
 
-#endif // __DAC7718_DATA_FIELD_HPP__
+#endif // __DAC7718_BASE_DATA_REGISTER_HPP__

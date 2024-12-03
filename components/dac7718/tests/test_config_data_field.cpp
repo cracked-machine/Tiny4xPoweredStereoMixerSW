@@ -2,8 +2,6 @@
 #include <dac7718.hpp>
 #include <helpers.hpp>
 
-
-
 TEST(Dac7718ConfigPacket, Defaults)
 {
     DAC7718::ConfigPacket config_packet{ true };
