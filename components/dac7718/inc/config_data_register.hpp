@@ -99,7 +99,7 @@ public:
         m_bits.set( 0, static_cast<bool>(w2) );         // DB4
     }
 
-    std::bitset<SIZE> get() const { return m_bits; }
+    std::bitset<WIDTH> get() const { return m_bits; }
     bool test(size_t pos) const { return m_bits.test(pos); }
     
     // data bit mutators

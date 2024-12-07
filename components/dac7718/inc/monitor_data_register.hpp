@@ -27,59 +27,59 @@ public:
         DAC6,
         DAC7,
     };
-    Data() { m_bits = std::bitset<SIZE>{0b000000000000}; }
+    Data() { m_bits = std::bitset<WIDTH>{0b000000000000}; }
     Data(Reg reg) 
     {
         switch(reg)
         {
             case Reg::DISABLED:
-                m_bits = std::bitset<SIZE>{0b000000000000};
+                m_bits = std::bitset<WIDTH>{0b000000000000};
                 break;
             case Reg::REFB_BUFFER:
-                m_bits = std::bitset<SIZE>{0b000000000001};
+                m_bits = std::bitset<WIDTH>{0b000000000001};
                 break;
             case Reg::REFA_BUFFER:
-                m_bits = std::bitset<SIZE>{0b000000000010};
+                m_bits = std::bitset<WIDTH>{0b000000000010};
                 break;
             case Reg::OFFSET_DACB:
-                m_bits = std::bitset<SIZE>{0b000000000101};
+                m_bits = std::bitset<WIDTH>{0b000000000101};
                 break;
             case Reg::OFFSET_DACA:
-                m_bits = std::bitset<SIZE>{0b000000000110};
+                m_bits = std::bitset<WIDTH>{0b000000000110};
                 break;
             case Reg::AIN0:
-                m_bits = std::bitset<SIZE>{0b000000000100};
+                m_bits = std::bitset<WIDTH>{0b000000000100};
                 break;
             case Reg::AIN1:
-                m_bits = std::bitset<SIZE>{0b000000001000};
+                m_bits = std::bitset<WIDTH>{0b000000001000};
                 break;
             case Reg::DAC0:
-                m_bits = std::bitset<SIZE>{0b000000010000};
+                m_bits = std::bitset<WIDTH>{0b000000010000};
                 break;
             case Reg::DAC1:
-                m_bits = std::bitset<SIZE>{0b000000100000};
+                m_bits = std::bitset<WIDTH>{0b000000100000};
                 break;
             case Reg::DAC2:
-                m_bits = std::bitset<SIZE>{0b000001000000};
+                m_bits = std::bitset<WIDTH>{0b000001000000};
                 break;
             case Reg::DAC3:
-                m_bits = std::bitset<SIZE>{0b000010000000};
+                m_bits = std::bitset<WIDTH>{0b000010000000};
                 break;
             case Reg::DAC4:
-                m_bits = std::bitset<SIZE>{0b000100000000};
+                m_bits = std::bitset<WIDTH>{0b000100000000};
                 break;
             case Reg::DAC5:
-                m_bits = std::bitset<SIZE>{0b001000000000};
+                m_bits = std::bitset<WIDTH>{0b001000000000};
                 break;
             case Reg::DAC6:
-                m_bits = std::bitset<SIZE>{0b010000000000};
+                m_bits = std::bitset<WIDTH>{0b010000000000};
                 break;
             case Reg::DAC7:
-                m_bits = std::bitset<SIZE>{0b100000000000};
+                m_bits = std::bitset<WIDTH>{0b100000000000};
                 break;
         };
     }
-    std::bitset<SIZE> get() const { return m_bits; }
+    std::bitset<WIDTH> get() const { return m_bits; }
     bool test(size_t pos) const { return m_bits.test(pos); }
 };
 

@@ -99,13 +99,13 @@ private:
     void serialize(ShiftRegisterBits &packet_bits) const
     {
         packet_bits.reset();
-        for (size_t idx = 0; idx < DATATYPE::SIZE; idx++)
+        for (size_t idx = 0; idx < DATATYPE::WIDTH; idx++)
         {
             (m_data.test(idx)) ?
                 packet_bits[DATATYPE::OFFSET + idx] = true :
                 packet_bits[DATATYPE::OFFSET + idx] = false;
         }    
-        for (size_t idx = 0; idx < AddressType::SIZE; idx++)
+        for (size_t idx = 0; idx < AddressType::WIDTH; idx++)
         {
             (AddressType::getval(m_addr).test(idx)) ?
                 packet_bits[AddressType::OFFSET + idx] = true :

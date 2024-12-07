@@ -15,7 +15,7 @@ namespace DAC7718
 class AddressType
 {
 public:
-    static const size_t SIZE{5};
+    static const size_t WIDTH{5};
     static const size_t OFFSET{16};
 
     // The list of Registers
@@ -57,7 +57,7 @@ public:
     // sync this end limit with the last entry in AddressType::Reg
     typedef EnumIterator<Reg, static_cast<Reg>(0), Reg::GAIN_7> Iter;
 
-    static std::bitset<AddressType::SIZE> getval(Reg k) 
+    static std::bitset<AddressType::WIDTH> getval(Reg k) 
     { 
         // guarantee singleton creation
         [[maybe_unused]] static AddressType instance;
@@ -65,67 +65,67 @@ public:
         switch(k)
         {
             case Reg::CONFIG:
-                return std::bitset<AddressType::SIZE>{0b00000};
+                return std::bitset<AddressType::WIDTH>{0b00000};
             case Reg::MONITOR:
-                return std::bitset<AddressType::SIZE>{0b00001};
+                return std::bitset<AddressType::WIDTH>{0b00001};
             case Reg::GPIO:
-                return std::bitset<AddressType::SIZE>{0b00010};
+                return std::bitset<AddressType::WIDTH>{0b00010};
             case Reg::OFFSET_DAC_A:
-                return std::bitset<AddressType::SIZE>{0b00011};
+                return std::bitset<AddressType::WIDTH>{0b00011};
             case Reg::OFFSET_DAC_B:
-                return std::bitset<AddressType::SIZE>{0b00100};
+                return std::bitset<AddressType::WIDTH>{0b00100};
             case Reg::SPI_MODE:
-                return std::bitset<AddressType::SIZE>{0b00110};
+                return std::bitset<AddressType::WIDTH>{0b00110};
             case Reg::BROADCAST:
-                return std::bitset<AddressType::SIZE>{0b00111};
+                return std::bitset<AddressType::WIDTH>{0b00111};
             case Reg::DAC_0_DATA:
-                return std::bitset<AddressType::SIZE>{0b01000};
+                return std::bitset<AddressType::WIDTH>{0b01000};
             case Reg::DAC_1_DATA:
-                return std::bitset<AddressType::SIZE>{0b01001};
+                return std::bitset<AddressType::WIDTH>{0b01001};
             case Reg::DAC_2_DATA:
-                return std::bitset<AddressType::SIZE>{0b01010};
+                return std::bitset<AddressType::WIDTH>{0b01010};
             case Reg::DAC_3_DATA:
-                return std::bitset<AddressType::SIZE>{0b01011};
+                return std::bitset<AddressType::WIDTH>{0b01011};
             case Reg::DAC_4_DATA:
-                return std::bitset<AddressType::SIZE>{0b01100};
+                return std::bitset<AddressType::WIDTH>{0b01100};
             case Reg::DAC_5_DATA:
-                return std::bitset<AddressType::SIZE>{0b01101};
+                return std::bitset<AddressType::WIDTH>{0b01101};
             case Reg::DAC_6_DATA:
-                return std::bitset<AddressType::SIZE>{0b01110};
+                return std::bitset<AddressType::WIDTH>{0b01110};
             case Reg::DAC_7_DATA:
-                return std::bitset<AddressType::SIZE>{0b01111};
+                return std::bitset<AddressType::WIDTH>{0b01111};
             case Reg::ZERO_0:
-                return std::bitset<AddressType::SIZE>{0b10000};
+                return std::bitset<AddressType::WIDTH>{0b10000};
             case Reg::GAIN_0:
-                return std::bitset<AddressType::SIZE>{0b11000};
+                return std::bitset<AddressType::WIDTH>{0b11000};
             case Reg::ZERO_1:
-                return std::bitset<AddressType::SIZE>{0b10001};
+                return std::bitset<AddressType::WIDTH>{0b10001};
             case Reg::GAIN_1:
-                return std::bitset<AddressType::SIZE>{0b11001};
+                return std::bitset<AddressType::WIDTH>{0b11001};
             case Reg::ZERO_2:
-                return std::bitset<AddressType::SIZE>{0b10010};
+                return std::bitset<AddressType::WIDTH>{0b10010};
             case Reg::GAIN_2:
-                return std::bitset<AddressType::SIZE>{0b11010};
+                return std::bitset<AddressType::WIDTH>{0b11010};
             case Reg::ZERO_3:
-                return std::bitset<AddressType::SIZE>{0b10011};
+                return std::bitset<AddressType::WIDTH>{0b10011};
             case Reg::GAIN_3:
-                return std::bitset<AddressType::SIZE>{0b11011};
+                return std::bitset<AddressType::WIDTH>{0b11011};
             case Reg::ZERO_4:
-                return std::bitset<AddressType::SIZE>{0b10100};
+                return std::bitset<AddressType::WIDTH>{0b10100};
             case Reg::GAIN_4:
-                return std::bitset<AddressType::SIZE>{0b11100};
+                return std::bitset<AddressType::WIDTH>{0b11100};
             case Reg::ZERO_5:
-                return std::bitset<AddressType::SIZE>{0b10101};
+                return std::bitset<AddressType::WIDTH>{0b10101};
             case Reg::GAIN_5:
-                return std::bitset<AddressType::SIZE>{0b11101};
+                return std::bitset<AddressType::WIDTH>{0b11101};
             case Reg::ZERO_6:
-                return std::bitset<AddressType::SIZE>{0b10110};
+                return std::bitset<AddressType::WIDTH>{0b10110};
             case Reg::GAIN_6:
-                return std::bitset<AddressType::SIZE>{0b11110};
+                return std::bitset<AddressType::WIDTH>{0b11110};
             case Reg::ZERO_7:
-                return std::bitset<AddressType::SIZE>{0b10111};
+                return std::bitset<AddressType::WIDTH>{0b10111};
             case Reg::GAIN_7:
-                return std::bitset<AddressType::SIZE>{0b11111};
+                return std::bitset<AddressType::WIDTH>{0b11111};
             default:
                 // this line can never be called but keeps compiler warning quiet
                  __builtin_unreachable();
@@ -134,7 +134,7 @@ public:
         __builtin_unreachable();
     } 
     // Return a Reg depending on the U16 value given
-    static Iter getReg(std::bitset<AddressType::SIZE> val)
+    static Iter getReg(std::bitset<AddressType::WIDTH> val)
     {
         // guarantee singleton creation
         [[maybe_unused]] static AddressType instance;

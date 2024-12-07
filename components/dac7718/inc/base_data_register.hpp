@@ -12,7 +12,7 @@ namespace DAC7718
 class BaseDataRegister
 {
 public:
-    static const size_t SIZE{12};
+    static const size_t WIDTH{12};
     static const size_t OFFSET{4};
 
     BaseDataRegister() = default; 
@@ -27,19 +27,19 @@ public:
      * 
      * @param bits MSB <--- LSB
      */
-    BaseDataRegister(std::bitset<SIZE> bits):  
+    BaseDataRegister(std::bitset<WIDTH> bits):  
         m_bits(std::move(bits)) 
     { 
     };
 
-    virtual std::bitset<SIZE> get() const = 0;
+    virtual std::bitset<WIDTH> get() const = 0;
     // virtual size_t size() const = 0;
     virtual bool test(size_t pos) const = 0;
     // const uint16_t m_offset{4};
 
 
 protected:
-    std::bitset<SIZE> m_bits;
+    std::bitset<WIDTH> m_bits;
 };
 
 } // namespace DAC7718
