@@ -6,6 +6,7 @@ else()
         /workspaces/Tiny4xPoweredStereoMixerSW/components/dac7718/tests/test_config_data_register.cpp
         /workspaces/Tiny4xPoweredStereoMixerSW/components/dac7718/tests/test_monitor_data_register.cpp
         /workspaces/Tiny4xPoweredStereoMixerSW/components/dac7718/tests/test_gpio_register.cpp
+        /workspaces/Tiny4xPoweredStereoMixerSW/components/dac7718/tests/test_offset_data_register.cpp
         
         /workspaces/Tiny4xPoweredStereoMixerSW/components/dac7718/src/dac7718.cpp
     )

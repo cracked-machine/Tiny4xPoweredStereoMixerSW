@@ -8,6 +8,7 @@
 #include <config_data_register.hpp>
 #include <monitor_data_register.hpp>
 #include <gpio_data_register.hpp>
+#include <offset_data_register.hpp>
 
 namespace DAC7718 
 {
@@ -164,6 +165,7 @@ private:
 using ConfigPacket = Packet<Config::Reg>;
 using MonitorPacket = Packet<Monitor::Data>;
 using GPIOPacket = Packet<GPIO::Reg>;
+using OffsetDacAPacket = Packet<OffsetDac::Reg>;
 
 } // namespace DAC7718
 
