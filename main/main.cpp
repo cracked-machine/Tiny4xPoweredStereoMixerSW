@@ -13,14 +13,18 @@
 // #include "esp_flash.h"
 // #include "esp_system.h"
 
-// #include <iostream>
+#include <iostream>
 #include <dac7718.hpp>
 // #include <esp_mac.h>
 
 extern "C" void app_main()
 {
     
-    DAC7718::Packet p;
-    p.run();
+    DAC7718::ConfigPacket config_packet{ true };
+    auto [packet_bytes, packet_bits] = config_packet.serialize();
+    for (auto byte : packet_bytes)
+        std::cout << std::hex << unsigned(byte);
+    
+    std::cout << std::endl << "Done";
 
 }
