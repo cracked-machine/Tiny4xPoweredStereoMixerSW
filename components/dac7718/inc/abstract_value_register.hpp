@@ -27,6 +27,10 @@ public:
      * 
      */
     void operator--(int);
+
+    void increase_3db();
+
+    void decrease_3db();
 };
 
 } // namespace Internal 

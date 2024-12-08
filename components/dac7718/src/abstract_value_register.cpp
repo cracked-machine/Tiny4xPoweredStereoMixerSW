@@ -46,5 +46,20 @@ void AbstractValueRegister::operator--(int)
     }
 }
 
+void AbstractValueRegister::increase_3db()
+{
+    // multiplying zero does nothing so set to 0x1
+    if (m_bits.none()) { m_bits[0] = 1; } 
+    // avoid wrap around to 0x0, set to 0xFFF
+    else if ((m_bits << 1 == 0x0) || (m_bits.all())) {m_bits = 0xFFF; }
+    // otherwise double the bit set value
+    else { m_bits <<= 1; }
+}
+
+void AbstractValueRegister::decrease_3db()
+{
+    m_bits >>= 1;
+}
+
 } // namespace Internal
 } // namespace DAC7718 
