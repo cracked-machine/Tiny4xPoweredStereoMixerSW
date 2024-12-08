@@ -22,8 +22,9 @@ public:
 
     void operator++(int) 
     {
-        // prevent integer underflow from 4095 to 0!
+        // prevent wrap around to 0x0
         if (value() == (MAX - 1)) { return; }
+
         //  add 1 to each value, and if it was 1 already, carry the 1 to the next.
         for ( size_t i = 0; i < WIDTH; ++i ) {
             if ( m_bits[i] == 0 ) 
@@ -37,6 +38,30 @@ public:
         }        
     }
 
+    /**
+     * @brief Decrement by inverting all bits up to the first "1" LSB.
+     * 
+     */
+    void operator--(int) 
+    {
+        // prevent wrap around to 0xFFF
+        if (value() == 0) { return; }
+
+        // beginning with the LSB
+        for ( size_t i = 0; i < WIDTH; ++i ) 
+        {
+            // invert each "0" bit.
+            if (m_bits[i] == 0) {  m_bits[i] = 1; }
+            // until a "1" bit is encountered
+            else 
+            { 
+                // then insert that "1" to "0" and stop
+                m_bits[i] = 0; 
+                // All bits beyond the first "1" bit remain unchanged.
+                break; 
+            }
+        }
+    }
 };
 
 } // OffsetDac
