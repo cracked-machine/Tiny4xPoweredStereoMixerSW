@@ -5,13 +5,13 @@
 #include <array>
 
 #include <address_register.hpp>
-#include <config_data_register.hpp>
-#include <monitor_data_register.hpp>
-#include <gpio_data_register.hpp>
-#include <offset_data_register.hpp>
+#include <config_option_register.hpp>
+#include <monitor_option_register.hpp>
+#include <gpio_option_register.hpp>
+#include <offset_value_register.hpp>
 
-namespace DAC7718 
-{
+namespace DAC7718 {
+namespace Types {
 
 /**
  * @brief Type Alias for 3 byte shift register. 
@@ -25,7 +25,12 @@ using ShiftRegisterBytes = std::array<uint8_t, 3>;
  *        Right position in string representation is the LSB
  */
 using ShiftRegisterBits = std::bitset<24>;
-    
+
+} // Types
+
+// Abstract types. Do not use Directly.
+namespace Internal {
+
 /**
  * @brief 
  Class template for constructing and serializing 
@@ -62,10 +67,10 @@ public:
      * 
      * @return std::pair<ShiftRegisterBytes, ShiftRegisterBits> 
      */
-    std::pair<ShiftRegisterBytes, ShiftRegisterBits> serialize() const
+    std::pair<Types::ShiftRegisterBytes, Types::ShiftRegisterBits> serialize() const
     {
-        ShiftRegisterBytes packet_bytes{0x00, 0x00, 0x00};
-        ShiftRegisterBits packet_bits;
+        Types::ShiftRegisterBytes packet_bytes{0x00, 0x00, 0x00};
+        Types::ShiftRegisterBits packet_bits;
 
         serialize(packet_bits);
 
@@ -97,7 +102,7 @@ private:
      * 
      * @param packet_bits The serialized bit sequence
      */
-    void serialize(ShiftRegisterBits &packet_bits) const
+    void serialize(Types::ShiftRegisterBits &packet_bits) const
     {
         packet_bits.reset();
         for (size_t idx = 0; idx < DATATYPE::WIDTH; idx++)
@@ -158,14 +163,31 @@ private:
 
 };
 
+} // namespace Internal
+
 /**
- * @brief Alias Template for Configuraion Register packets
+ * @brief Type alias for Configuraion packets
  * 
  */
-using ConfigPacket = Packet<Config::Reg>;
-using MonitorPacket = Packet<Monitor::Data>;
-using GPIOPacket = Packet<GPIO::Reg>;
-using OffsetDacAPacket = Packet<OffsetDac::Reg>;
+using ConfigPacket = Internal::Packet<Register::Config>;
+
+/**
+ * @brief Type alias for GPIO packets
+ * 
+ */
+using GeneralPurposeIOPacket = Internal::Packet<Register::GeneralPurposeIO>;
+
+/**
+ * @brief Type alias for Monitor packets
+ * 
+ */
+using MonitorPacket = Internal::Packet<Register::Monitor>;
+
+/**
+ * @brief Type alias for OffsetDac packets
+ * 
+ */
+using OffsetDacAPacket = Internal::Packet<Register::OffsetDac>;
 
 } // namespace DAC7718
 

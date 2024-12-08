@@ -1,8 +1,8 @@
 #ifndef __DAC7718_ENUM_ITERATOR_HPP__
 #define __DAC7718_ENUM_ITERATOR_HPP__
 
-namespace DAC7718 
-{
+namespace DAC7718 {
+namespace Internal {
 
 // iterator for use with enums
 template < typename ENUM, ENUM beginVal, ENUM endVal>
@@ -25,7 +25,7 @@ public:
   bool operator!=(const EnumIterator& i) { return val != i.val; }
 };
 
-
+} // namespace Internal
 } // namespace DAC7718
 
 #endif // __DAC7718_ENUM_ITERATOR_HPP__

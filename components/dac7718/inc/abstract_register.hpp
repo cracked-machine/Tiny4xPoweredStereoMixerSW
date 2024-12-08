@@ -1,22 +1,22 @@
-#ifndef __DAC7718_BASE_DATA_REGISTER_HPP__
-#define __DAC7718_BASE_DATA_REGISTER_HPP__
+#ifndef __DAC7718_ABSTRACT_DATA_REGISTER_HPP__
+#define __DAC7718_ABSTRACT_DATA_REGISTER_HPP__
 
 #include <bitset>
 
-namespace DAC7718 
-{
+namespace DAC7718 {
+namespace Internal {
 
 /**
- * @brief Base class for data field in shift register
+ * @brief Abstract base class for data register. Do NOT use this type directly.
  */
-class BaseDataRegister
+class AbstractDataRegister
 {
 public:
     static const size_t WIDTH{12};
     static const size_t OFFSET{4};
 
-    BaseDataRegister() = default; 
-    BaseDataRegister& operator=(const BaseDataRegister &other) 
+    AbstractDataRegister() = default; 
+    AbstractDataRegister& operator=(const AbstractDataRegister &other) 
     { 
         m_bits = other.m_bits;
         return *this;
@@ -27,21 +27,20 @@ public:
      * 
      * @param bits MSB <--- LSB
      */
-    BaseDataRegister(std::bitset<WIDTH> bits):  
+    AbstractDataRegister(std::bitset<WIDTH> bits):  
         m_bits(std::move(bits)) 
     { 
     };
 
     virtual std::bitset<WIDTH> get() const = 0;
-    // virtual size_t size() const = 0;
     virtual bool test(size_t pos) const = 0;
-    // const uint16_t m_offset{4};
 
 
 protected:
     std::bitset<WIDTH> m_bits;
 };
 
+} // namespace Internal
 } // namespace DAC7718
 
-#endif // __DAC7718_BASE_DATA_REGISTER_HPP__
+#endif // __DAC7718_ABSTRACT_DATA_REGISTER_HPP__

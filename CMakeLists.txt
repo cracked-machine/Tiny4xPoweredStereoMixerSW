@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 3.16)
 
 set(COMMON_COMPILER_OPTIONS -Wall -Wextra -Werror -Wswitch-enum)
 set(DEBUG_COMPILER_OPTIONS -g -O0 -ftest-coverage)
+set(RELEASE_COMPILER_OPTIONS -O3)
 
 set(COV_COMPILER_OPTIONS -ftest-coverage)
 set(COV_LINKER_OPTIONS -lgcov --coverage)
@@ -12,7 +13,7 @@ if($ENV{BUILDTARGET})
     include($ENV{IDF_PATH}/tools/cmake/project.cmake)
     project(TinyMixer)
     # gives a warning about an omitted enumeration code even if there is a default label. 
-    idf_build_set_property(COMPILE_OPTIONS ${COMMON_COMPILER_OPTIONS} APPEND)
+    idf_build_set_property(COMPILE_OPTIONS ${COMMON_COMPILER_OPTIONS} ${RELEASE_COMPILER_OPTIONS} APPEND)
 else()
     
     project(TinyMixer VERSION 1.0 LANGUAGES CXX)

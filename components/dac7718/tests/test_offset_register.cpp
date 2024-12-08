@@ -10,8 +10,8 @@ TEST(Dac7718OffsetPacket, IncrementFromZero)
 {
     DAC7718::OffsetDacAPacket offdac_packet{ true };
 
-    DAC7718::ShiftRegisterBytes expected_final_sr_bytes{0x83, 0xFF, 0xF0};
-    DAC7718::ShiftRegisterBits expected_final_sr_bits{0b100000111111111111110000};
+    DAC7718::Types::ShiftRegisterBytes expected_final_sr_bytes{0x83, 0xFF, 0xF0};
+    DAC7718::Types::ShiftRegisterBits expected_final_sr_bits{0b100000111111111111110000};
     for ( uint16_t expected_value = 0; expected_value < offdac_packet.data().MAX; offdac_packet.data()++)
     {
         ASSERT_EQ(offdac_packet.data().value(), expected_value);
@@ -34,8 +34,8 @@ TEST(Dac7718OffsetPacket, IncrementFromZero)
 TEST(Dac7718OffsetPacket, IncrementWrap)
 {
     DAC7718::OffsetDacAPacket offdac_packet{ true };
-    DAC7718::ShiftRegisterBytes expected_final_sr_bytes{0x83, 0xFF, 0xF0};
-    DAC7718::ShiftRegisterBits expected_final_sr_bits{0b100000111111111111110000};
+    DAC7718::Types::ShiftRegisterBytes expected_final_sr_bytes{0x83, 0xFF, 0xF0};
+    DAC7718::Types::ShiftRegisterBits expected_final_sr_bits{0b100000111111111111110000};
 
     uint16_t saturate = 10;
 
@@ -65,10 +65,11 @@ TEST(Dac7718OffsetPacket, IncrementWrap)
  */
 TEST(Dac7718OffsetPacket, DecrementToZero)
 {
-    DAC7718::OffsetDacAPacket offdac_packet{ true, DAC7718::OffsetDac::Reg{0xFFF} };
 
-    DAC7718::ShiftRegisterBytes expected_sr_bytes{0x83, 0x00, 0x00};
-    DAC7718::ShiftRegisterBits expected_sr_bits{0b100000110000000000000000};
+    DAC7718::OffsetDacAPacket offdac_packet{ true, DAC7718::Register::OffsetDac{0xFFF} };
+
+    DAC7718::Types::ShiftRegisterBytes expected_sr_bytes{0x83, 0x00, 0x00};
+    DAC7718::Types::ShiftRegisterBits expected_sr_bits{0b100000110000000000000000};
     for ( int16_t expected_value = 4095; expected_value > -1; offdac_packet.data()--)
     {
 
@@ -91,10 +92,10 @@ TEST(Dac7718OffsetPacket, DecrementToZero)
  */
 TEST(Dac7718OffsetPacket, DecrementToZeroWrap)
 {
-    DAC7718::OffsetDacAPacket offdac_packet{ true, DAC7718::OffsetDac::Reg{0xFFF} };
+    DAC7718::OffsetDacAPacket offdac_packet{ true, DAC7718::Register::OffsetDac{0xFFF} };
 
-    DAC7718::ShiftRegisterBytes expected_sr_bytes{0x83, 0x00, 0x00};
-    DAC7718::ShiftRegisterBits expected_sr_bits{0b100000110000000000000000};
+    DAC7718::Types::ShiftRegisterBytes expected_sr_bytes{0x83, 0x00, 0x00};
+    DAC7718::Types::ShiftRegisterBits expected_sr_bits{0b100000110000000000000000};
 
     int16_t saturate = -10;
 

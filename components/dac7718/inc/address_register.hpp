@@ -6,9 +6,8 @@
 
 #include <enum_iterator.hpp>
 
-namespace DAC7718 
-{
-
+namespace DAC7718 {
+namespace Internal {
 
 // Singleton class provides forward/reverse lookup
 // on member enum Reg/value
@@ -148,6 +147,7 @@ private:
     AddressType() {}
 };
 
+} // namespace Internal
 } // namespace DAC7718
 
 #endif // __DAC7718_ADDRESS_REGISTER_HPP__
