@@ -9,7 +9,7 @@
 #include <monitor_option_register.hpp>
 #include <gpio_option_register.hpp>
 #include <offset_value_register.hpp>
-#include <address_register.hpp>
+#include <spimode_option_register.hpp>
 
 namespace DAC7718 {
 namespace Types {
@@ -232,6 +232,19 @@ class OffsetDacBPacket : public Internal::Packet<Register::OffsetDac>
 public:
     OffsetDacBPacket(bool rw, Register::OffsetDac data = Register::OffsetDac())
     : Packet(rw, Internal::AddressType::Reg::OFFSET_DAC_A, std::move(data))
+    {
+    }
+};
+
+/**
+ * @brief OffsetDacB packet class
+ * 
+ */
+class SpiModePacket : public Internal::Packet<Register::SpiMode>
+{
+public:
+    SpiModePacket(bool rw, Register::SpiMode data = Register::SpiMode())
+    : Packet(rw, Internal::AddressType::Reg::SPI_MODE, std::move(data))
     {
     }
 };

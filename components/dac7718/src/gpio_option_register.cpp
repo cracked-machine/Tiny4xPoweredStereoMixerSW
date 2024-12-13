@@ -2,14 +2,6 @@
 #include <gpio_option_register.hpp>
 
 namespace DAC7718 {
-
-// template<> GeneralPurposeIOPacket::Packet(bool rw, Register::GeneralPurposeIO data)
-// {
-//     m_rwbit = rw;
-//     m_addr = AddressType::Reg::GPIO;
-//     m_data = std::move(data);
-// }
-
 namespace Register {
 
 GeneralPurposeIO::GeneralPurposeIO(Gpio2Bit gpio_2, Gpio1Bit gpio_1, Gpio0Bit gpio_0)

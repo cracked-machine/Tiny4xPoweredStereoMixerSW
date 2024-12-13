@@ -2,21 +2,6 @@
 #include <config_option_register.hpp>
 
 namespace DAC7718 {
-
-/**
- * @brief Explicit specialization of constructor for Configuration Packet
- * 
- * @tparam  The data register type
- * @param rw The read write bit
- */
-// template<> ConfigPacket::Packet(bool rw, Register::Config data)
-// {
-//     m_rwbit = rw;
-//     m_addr = AddressType::Reg::CONFIG;
-//     m_data = std::move(data);
-
-// }
-
 namespace Register {
 
 Config::Config(InputRegisterBit ab, LatchDataBit ld, ResetBit rst, PowerDownGroupABit pda, PowerDownGroupBBit pdb, 

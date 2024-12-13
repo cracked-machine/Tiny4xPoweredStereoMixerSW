@@ -9,8 +9,6 @@ namespace Register {
 class GeneralPurposeIO : public Internal::AbstractDataRegister
 {
 public:
-
-
     enum class Gpio0Bit { 
         HIGH = 1,  // hi-z in when write bit is set, default
         LOW = 0

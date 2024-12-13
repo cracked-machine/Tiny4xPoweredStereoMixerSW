@@ -2,17 +2,7 @@
 #include <monitor_option_register.hpp>
 
 namespace DAC7718 {
-
-// template<> MonitorPacket::Packet(bool rw, Register::Monitor data)
-// {
-//     m_rwbit = rw;
-//     m_addr = AddressType::Reg::MONITOR;
-//     m_data = std::move(data);
-// }
-
 namespace Register {
-
-Monitor::Monitor() { m_bits = std::bitset<WIDTH>{0b000000000000}; }
 
 Monitor::Monitor(Preset reg) 
 {

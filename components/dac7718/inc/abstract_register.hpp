@@ -16,16 +16,11 @@ public:
     static const size_t OFFSET{4};
 
     AbstractDataRegister() = default; 
-    // AbstractDataRegister& operator=(const AbstractDataRegister &other) 
-    // { 
-    //     m_bits = other.m_bits;
-    //     return *this;
-    // }
 
     /**
-     * @brief Construct a new Field object
+     * @brief Construct a new Register object
      * 
-     * @param bits MSB <--- LSB
+     * @param bits MSB ... LSB
      */
     AbstractDataRegister(std::bitset<WIDTH> bits):  
         m_bits(std::move(bits)) 
@@ -34,8 +29,7 @@ public:
 
     virtual std::bitset<WIDTH> get() const = 0;
     virtual bool test(size_t pos) const = 0;
-
-
+    
 protected:
     std::bitset<WIDTH> m_bits;
 };

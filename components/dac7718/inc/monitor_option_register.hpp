@@ -27,8 +27,7 @@ public:
         DAC6,
         DAC7,
     };
-    Monitor();
-    Monitor(Preset reg);
+    Monitor(Preset reg = Preset::DISABLED);
     
     std::bitset<WIDTH> get() const { return m_bits; }
     bool test(size_t pos) const { return m_bits.test(pos); }

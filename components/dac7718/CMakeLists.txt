@@ -6,7 +6,6 @@ if($ENV{BUILDTARGET})
         "src/gpio_option_register.cpp"
         "src/monitor_option_register.cpp"
         "src/abstract_value_register.cpp"
-        "src/offset_value_register.cpp"
         INCLUDE_DIRS 
         "inc"
     )
