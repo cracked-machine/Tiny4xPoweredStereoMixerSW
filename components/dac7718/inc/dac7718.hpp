@@ -231,16 +231,7 @@ class OffsetDacBPacket : public Internal::Packet<Register::RawValue>
 {
 public:
     OffsetDacBPacket(bool rw, Register::RawValue data = Register::RawValue())
-    : Packet(rw, Internal::AddressType::Reg::OFFSET_DAC_A, std::move(data))
-    {
-    }
-};
-
-class BroadcastPacket : public Internal::Packet<Register::RawValue>
-{
-public:
-    BroadcastPacket(bool rw, Register::RawValue data = Register::RawValue())
-    : Packet(rw, Internal::AddressType::Reg::BROADCAST, std::move(data))
+    : Packet(rw, Internal::AddressType::Reg::OFFSET_DAC_B, std::move(data))
     {
     }
 };
@@ -254,6 +245,232 @@ class SpiModePacket : public Internal::Packet<Register::SpiMode>
 public:
     SpiModePacket(bool rw, Register::SpiMode data = Register::SpiMode())
     : Packet(rw, Internal::AddressType::Reg::SPI_MODE, std::move(data))
+    {
+    }
+};
+
+class BroadcastPacket : public Internal::Packet<Register::RawValue>
+{
+public:
+    BroadcastPacket(bool rw, Register::RawValue data = Register::RawValue())
+    : Packet(rw, Internal::AddressType::Reg::BROADCAST, std::move(data))
+    {
+    }
+};
+
+class InputData0Packet : public Internal::Packet<Register::RawValue>
+{
+public:
+    InputData0Packet(bool rw, Register::RawValue data = Register::RawValue())
+    : Packet(rw, Internal::AddressType::Reg::DAC_0_DATA, std::move(data))
+    {
+    }
+};
+
+class InputData1Packet : public Internal::Packet<Register::RawValue>
+{
+public:
+    InputData1Packet(bool rw, Register::RawValue data = Register::RawValue())
+    : Packet(rw, Internal::AddressType::Reg::DAC_1_DATA, std::move(data))
+    {
+    }
+};
+
+class InputData2Packet : public Internal::Packet<Register::RawValue>
+{
+public:
+    InputData2Packet(bool rw, Register::RawValue data = Register::RawValue())
+    : Packet(rw, Internal::AddressType::Reg::DAC_2_DATA, std::move(data))
+    {
+    }
+};
+
+class InputData3Packet : public Internal::Packet<Register::RawValue>
+{
+public:
+    InputData3Packet(bool rw, Register::RawValue data = Register::RawValue())
+    : Packet(rw, Internal::AddressType::Reg::DAC_3_DATA, std::move(data))
+    {
+    }
+};
+
+class InputData4Packet : public Internal::Packet<Register::RawValue>
+{
+public:
+    InputData4Packet(bool rw, Register::RawValue data = Register::RawValue())
+    : Packet(rw, Internal::AddressType::Reg::DAC_4_DATA, std::move(data))
+    {
+    }
+};
+
+class InputData5Packet : public Internal::Packet<Register::RawValue>
+{
+public:
+    InputData5Packet(bool rw, Register::RawValue data = Register::RawValue())
+    : Packet(rw, Internal::AddressType::Reg::DAC_5_DATA, std::move(data))
+    {
+    }
+};
+
+class InputData6Packet : public Internal::Packet<Register::RawValue>
+{
+public:
+    InputData6Packet(bool rw, Register::RawValue data = Register::RawValue())
+    : Packet(rw, Internal::AddressType::Reg::DAC_6_DATA, std::move(data))
+    {
+    }
+};
+
+class InputData7Packet : public Internal::Packet<Register::RawValue>
+{
+public:
+    InputData7Packet(bool rw, Register::RawValue data = Register::RawValue())
+    : Packet(rw, Internal::AddressType::Reg::DAC_7_DATA, std::move(data))
+    {
+    }
+};
+
+class ZeroData0Packet : public Internal::Packet<Register::RawValue>
+{
+public:
+    ZeroData0Packet(bool rw, Register::RawValue data = Register::RawValue())
+    : Packet(rw, Internal::AddressType::Reg::ZERO_0, std::move(data))
+    {
+    }
+};
+
+class ZeroData1Packet : public Internal::Packet<Register::RawValue>
+{
+public:
+    ZeroData1Packet(bool rw, Register::RawValue data = Register::RawValue())
+    : Packet(rw, Internal::AddressType::Reg::ZERO_1, std::move(data))
+    {
+    }
+};
+
+class ZeroData2Packet : public Internal::Packet<Register::RawValue>
+{
+public:
+    ZeroData2Packet(bool rw, Register::RawValue data = Register::RawValue())
+    : Packet(rw, Internal::AddressType::Reg::ZERO_2, std::move(data))
+    {
+    }
+};
+
+class ZeroData3Packet : public Internal::Packet<Register::RawValue>
+{
+public:
+    ZeroData3Packet(bool rw, Register::RawValue data = Register::RawValue())
+    : Packet(rw, Internal::AddressType::Reg::ZERO_3, std::move(data))
+    {
+    }
+};
+
+class ZeroData4Packet : public Internal::Packet<Register::RawValue>
+{
+public:
+    ZeroData4Packet(bool rw, Register::RawValue data = Register::RawValue())
+    : Packet(rw, Internal::AddressType::Reg::ZERO_4, std::move(data))
+    {
+    }
+};
+
+class ZeroData5Packet : public Internal::Packet<Register::RawValue>
+{
+public:
+    ZeroData5Packet(bool rw, Register::RawValue data = Register::RawValue())
+    : Packet(rw, Internal::AddressType::Reg::ZERO_5, std::move(data))
+    {
+    }
+};
+
+class ZeroData6Packet : public Internal::Packet<Register::RawValue>
+{
+public:
+    ZeroData6Packet(bool rw, Register::RawValue data = Register::RawValue())
+    : Packet(rw, Internal::AddressType::Reg::ZERO_6, std::move(data))
+    {
+    }
+};
+
+class ZeroData7Packet : public Internal::Packet<Register::RawValue>
+{
+public:
+    ZeroData7Packet(bool rw, Register::RawValue data = Register::RawValue())
+    : Packet(rw, Internal::AddressType::Reg::ZERO_7, std::move(data))
+    {
+    }
+};
+
+
+class GainData0Packet : public Internal::Packet<Register::RawValue>
+{
+public:
+    GainData0Packet(bool rw, Register::RawValue data = Register::RawValue())
+    : Packet(rw, Internal::AddressType::Reg::GAIN_0, std::move(data))
+    {
+    }
+};
+
+class GainData1Packet : public Internal::Packet<Register::RawValue>
+{
+public:
+    GainData1Packet(bool rw, Register::RawValue data = Register::RawValue())
+    : Packet(rw, Internal::AddressType::Reg::GAIN_1, std::move(data))
+    {
+    }
+};
+
+class GainData2Packet : public Internal::Packet<Register::RawValue>
+{
+public:
+    GainData2Packet(bool rw, Register::RawValue data = Register::RawValue())
+    : Packet(rw, Internal::AddressType::Reg::GAIN_2, std::move(data))
+    {
+    }
+};
+
+class GainData3Packet : public Internal::Packet<Register::RawValue>
+{
+public:
+    GainData3Packet(bool rw, Register::RawValue data = Register::RawValue())
+    : Packet(rw, Internal::AddressType::Reg::GAIN_3, std::move(data))
+    {
+    }
+};
+
+class GainData4Packet : public Internal::Packet<Register::RawValue>
+{
+public:
+    GainData4Packet(bool rw, Register::RawValue data = Register::RawValue())
+    : Packet(rw, Internal::AddressType::Reg::GAIN_4, std::move(data))
+    {
+    }
+};
+
+class GainData5Packet : public Internal::Packet<Register::RawValue>
+{
+public:
+    GainData5Packet(bool rw, Register::RawValue data = Register::RawValue())
+    : Packet(rw, Internal::AddressType::Reg::GAIN_5, std::move(data))
+    {
+    }
+};
+
+class GainData6Packet : public Internal::Packet<Register::RawValue>
+{
+public:
+    GainData6Packet(bool rw, Register::RawValue data = Register::RawValue())
+    : Packet(rw, Internal::AddressType::Reg::GAIN_6, std::move(data))
+    {
+    }
+};
+
+class GainData7Packet : public Internal::Packet<Register::RawValue>
+{
+public:
+    GainData7Packet(bool rw, Register::RawValue data = Register::RawValue())
+    : Packet(rw, Internal::AddressType::Reg::GAIN_7, std::move(data))
     {
     }
 };
