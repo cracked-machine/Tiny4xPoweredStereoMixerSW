@@ -6,10 +6,10 @@
 namespace DAC7718 {
 namespace Register {
 
-class OffsetDac : public Internal::AbstractValueRegister
+class ValueData : public Internal::AbstractValueRegister
 {
 public: 
-    OffsetDac(std::bitset<WIDTH> val = 0x0) { m_bits = std::move(val); }
+    ValueData(std::bitset<WIDTH> val = 0x0) { m_bits = std::move(val); }
 
     std::bitset<WIDTH> get() const { return m_bits; }
     bool test(size_t pos) const { return m_bits.test(pos); }

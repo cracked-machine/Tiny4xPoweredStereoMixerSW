@@ -14,11 +14,11 @@
  * @param sut 
  */
 template<class VALUEPACKETONLY>
-void GenericIncrementTo0xFFFWrap(VALUEPACKETONLY sut)
+void GenericIncrementTo0xFFFWrap(
+    VALUEPACKETONLY sut, 
+    const DAC7718::Types::ShiftRegisterBytes &expected_final_sr_bytes, 
+    const DAC7718::Types::ShiftRegisterBits &expected_final_sr_bits)
 {
-    DAC7718::Types::ShiftRegisterBytes expected_final_sr_bytes{0x83, 0xFF, 0xF0};
-    DAC7718::Types::ShiftRegisterBits expected_final_sr_bits{0b100000111111111111110000};
-
     uint16_t saturate = 10;
 
     for ( 
@@ -37,8 +37,8 @@ void GenericIncrementTo0xFFFWrap(VALUEPACKETONLY sut)
     auto [packet_bytes, packet_bits] = sut.serialize();
     print_bytes(packet_bytes);
     print_bits(packet_bits);
-    ASSERT_EQ(packet_bits,expected_final_sr_bits);
-    ASSERT_EQ(packet_bytes,expected_final_sr_bytes);
+    ASSERT_EQ(packet_bits, expected_final_sr_bits);
+    ASSERT_EQ(packet_bytes, expected_final_sr_bytes);
 }
 
 /**
@@ -49,10 +49,11 @@ void GenericIncrementTo0xFFFWrap(VALUEPACKETONLY sut)
  * @param sut 
  */
 template<class VALUEPACKETONLY>
-void GenericDecrementToZeroWrap(VALUEPACKETONLY sut)
+void GenericDecrementToZeroWrap(
+    VALUEPACKETONLY sut, 
+    const DAC7718::Types::ShiftRegisterBytes &expected_final_sr_bytes, 
+    const DAC7718::Types::ShiftRegisterBits &expected_final_sr_bits)
 {
-    DAC7718::Types::ShiftRegisterBytes expected_sr_bytes{0x83, 0x00, 0x00};
-    DAC7718::Types::ShiftRegisterBits expected_sr_bits{0b100000110000000000000000};
 
     int16_t saturate = -10;
 
@@ -70,8 +71,8 @@ void GenericDecrementToZeroWrap(VALUEPACKETONLY sut)
     auto [packet_bytes, packet_bits] = sut.serialize();
     print_bytes(packet_bytes);
     print_bits(packet_bits);
-    ASSERT_EQ(packet_bits,expected_sr_bits);
-    ASSERT_EQ(packet_bytes,expected_sr_bytes);
+    ASSERT_EQ(packet_bits, expected_final_sr_bits);
+    ASSERT_EQ(packet_bytes, expected_final_sr_bytes);
 }
 
 /**
@@ -81,10 +82,11 @@ void GenericDecrementToZeroWrap(VALUEPACKETONLY sut)
  * @param sut 
  */
 template<class VALUEPACKETONLY>
-void GenericIncrement3dbFrom0(VALUEPACKETONLY sut)
+void GenericIncrement3dbFrom0(
+    VALUEPACKETONLY sut, 
+    const DAC7718::Types::ShiftRegisterBytes &expected_final_sr_bytes, 
+    const DAC7718::Types::ShiftRegisterBits &expected_final_sr_bits)
 {
-    DAC7718::Types::ShiftRegisterBytes expected_final_sr_bytes{0x83, 0xFF, 0xF0};
-    DAC7718::Types::ShiftRegisterBits expected_final_sr_bits{0b100000111111111111110000};
     size_t saturate = 10;
     for(size_t i = 0; i < DAC7718::Register::Config::WIDTH + saturate; i++)
     {
@@ -96,8 +98,8 @@ void GenericIncrement3dbFrom0(VALUEPACKETONLY sut)
     auto [packet_bytes, packet_bits] = sut.serialize();
     print_bytes(packet_bytes);
     print_bits(packet_bits);
-    ASSERT_EQ(packet_bits,expected_final_sr_bits);
-    ASSERT_EQ(packet_bytes,expected_final_sr_bytes);
+    ASSERT_EQ(packet_bits, expected_final_sr_bits);
+    ASSERT_EQ(packet_bytes, expected_final_sr_bytes);
 }
 
 /**
@@ -107,10 +109,11 @@ void GenericIncrement3dbFrom0(VALUEPACKETONLY sut)
  * @param sut 
  */
 template<class VALUEPACKETONLY>
-void GenericIncrement3dbFrom1(VALUEPACKETONLY sut)
+void GenericIncrement3dbFrom1(
+    VALUEPACKETONLY sut, 
+    const DAC7718::Types::ShiftRegisterBytes &expected_final_sr_bytes, 
+    const DAC7718::Types::ShiftRegisterBits &expected_final_sr_bits)
 {
-    DAC7718::Types::ShiftRegisterBytes expected_final_sr_bytes{0x83, 0xFF, 0xF0};
-    DAC7718::Types::ShiftRegisterBits expected_final_sr_bits{0b100000111111111111110000};
     size_t saturate = 10;
     for(size_t i = 0; i < DAC7718::Register::Config::WIDTH + saturate; i++)
     {
@@ -122,8 +125,8 @@ void GenericIncrement3dbFrom1(VALUEPACKETONLY sut)
     auto [packet_bytes, packet_bits] = sut.serialize();
     print_bytes(packet_bytes);
     print_bits(packet_bits);
-    ASSERT_EQ(packet_bits,expected_final_sr_bits);
-    ASSERT_EQ(packet_bytes,expected_final_sr_bytes);
+    ASSERT_EQ(packet_bits, expected_final_sr_bits);
+    ASSERT_EQ(packet_bytes, expected_final_sr_bytes);
 }
 
 /**
@@ -133,10 +136,11 @@ void GenericIncrement3dbFrom1(VALUEPACKETONLY sut)
  * @param sut 
  */
 template<class VALUEPACKETONLY>
-void GenericDecrement3dbFrom0x800(VALUEPACKETONLY sut)
+void GenericDecrement3dbFrom0x800(
+    VALUEPACKETONLY sut, 
+    const DAC7718::Types::ShiftRegisterBytes &expected_final_sr_bytes, 
+    const DAC7718::Types::ShiftRegisterBits &expected_final_sr_bits)
 {
-    DAC7718::Types::ShiftRegisterBytes expected_final_sr_bytes{0x83, 0x00, 0x00};
-    DAC7718::Types::ShiftRegisterBits expected_final_sr_bits{0b100000110000000000000000};
     int saturate = -10;
     for(int i = DAC7718::Register::Config::WIDTH - 1; i > saturate; i--)
     {
@@ -148,8 +152,8 @@ void GenericDecrement3dbFrom0x800(VALUEPACKETONLY sut)
     auto [packet_bytes, packet_bits] = sut.serialize();
     print_bytes(packet_bytes);
     print_bits(packet_bits);
-    ASSERT_EQ(packet_bits,expected_final_sr_bits);
-    ASSERT_EQ(packet_bytes,expected_final_sr_bytes);
+    ASSERT_EQ(packet_bits, expected_final_sr_bits);
+    ASSERT_EQ(packet_bytes, expected_final_sr_bytes);
 }
 
 /**
@@ -159,10 +163,11 @@ void GenericDecrement3dbFrom0x800(VALUEPACKETONLY sut)
  * @param sut 
  */
 template<class VALUEPACKETONLY>
-void GenericDecrement3dbFrom0xFFF(VALUEPACKETONLY sut)
+void GenericDecrement3dbFrom0xFFF(
+    VALUEPACKETONLY sut, 
+    const DAC7718::Types::ShiftRegisterBytes &expected_final_sr_bytes, 
+    const DAC7718::Types::ShiftRegisterBits &expected_final_sr_bits)
 {
-    DAC7718::Types::ShiftRegisterBytes expected_final_sr_bytes{0x83, 0x00, 0x00};
-    DAC7718::Types::ShiftRegisterBits expected_final_sr_bits{0b100000110000000000000000};
     int saturate = -10;
     for(int i = DAC7718::Register::Config::WIDTH - 1; i > saturate; i--)
     {
@@ -174,8 +179,8 @@ void GenericDecrement3dbFrom0xFFF(VALUEPACKETONLY sut)
     auto [packet_bytes, packet_bits] = sut.serialize();
     print_bytes(packet_bytes);
     print_bits(packet_bits);
-    ASSERT_EQ(packet_bits,expected_final_sr_bits);
-    ASSERT_EQ(packet_bytes,expected_final_sr_bytes);
+    ASSERT_EQ(packet_bits, expected_final_sr_bits);
+    ASSERT_EQ(packet_bytes, expected_final_sr_bytes);
 }
 
 #endif // __VALUE_REGISTER_COMMON_HPP__

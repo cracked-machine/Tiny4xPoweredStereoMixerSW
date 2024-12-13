@@ -214,10 +214,10 @@ public:
  * @brief OffsetDacA packet class
  * 
  */
-class OffsetDacAPacket : public Internal::Packet<Register::OffsetDac>
+class OffsetDacAPacket : public Internal::Packet<Register::ValueData>
 {
 public:
-    OffsetDacAPacket(bool rw, Register::OffsetDac data = Register::OffsetDac())
+    OffsetDacAPacket(bool rw, Register::ValueData data = Register::ValueData())
     : Packet(rw, Internal::AddressType::Reg::OFFSET_DAC_A, std::move(data))
     {
     }
@@ -227,17 +227,26 @@ public:
  * @brief OffsetDacB packet class
  * 
  */
-class OffsetDacBPacket : public Internal::Packet<Register::OffsetDac>
+class OffsetDacBPacket : public Internal::Packet<Register::ValueData>
 {
 public:
-    OffsetDacBPacket(bool rw, Register::OffsetDac data = Register::OffsetDac())
+    OffsetDacBPacket(bool rw, Register::ValueData data = Register::ValueData())
     : Packet(rw, Internal::AddressType::Reg::OFFSET_DAC_A, std::move(data))
     {
     }
 };
 
+class BroadcastPacket : public Internal::Packet<Register::ValueData>
+{
+public:
+    BroadcastPacket(bool rw, Register::ValueData data = Register::ValueData())
+    : Packet(rw, Internal::AddressType::Reg::BROADCAST, std::move(data))
+    {
+    }
+};
+
 /**
- * @brief OffsetDacB packet class
+ * @brief SpiMode packet class
  * 
  */
 class SpiModePacket : public Internal::Packet<Register::SpiMode>
