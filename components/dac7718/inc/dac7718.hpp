@@ -67,9 +67,6 @@ public:
         m_addr = addr_type;
         m_data = std::move(data);
     }
-    // Packet(bool rw, AddressType addr_type, DATATYPE data = DATATYPE()):
-    //     m_addr{addr_type}
-    // {}
 
     /**
      * @brief Serialize 24-bit sequence into a 3-byte array and return both
@@ -185,7 +182,6 @@ public:
     : Packet(rw, Internal::AddressType::Reg::CONFIG, data)
     {
     }
-
 };
 
 /**
