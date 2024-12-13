@@ -23,7 +23,7 @@ TEST(Dac7718OffsetPacket, IncrementTo0xFFFWrap)
 TEST(Dac7718OffsetPacket, DecrementToZeroWrap)
 {
     GenericDecrementToZeroWrap(
-        DAC7718::OffsetDacAPacket{ true, DAC7718::Register::ValueData{0xFFF} },
+        DAC7718::OffsetDacAPacket{ true, DAC7718::Register::RawValue{0xFFF} },
         DAC7718::Types::ShiftRegisterBytes{ 0x83, 0x00, 0x00 },
         DAC7718::Types::ShiftRegisterBits{ 0b100000110000000000000000 }
     );
@@ -49,7 +49,7 @@ TEST(Dac7718OffsetPacket, Increment3dbFrom0)
 TEST(Dac7718OffsetPacket, Increment3dbFrom1)
 {
     GenericIncrement3dbFrom1(
-        DAC7718::OffsetDacAPacket{ true, DAC7718::Register::ValueData{0x001} },
+        DAC7718::OffsetDacAPacket{ true, DAC7718::Register::RawValue{0x001} },
         DAC7718::Types::ShiftRegisterBytes{ 0x83, 0xFF, 0xF0 },
         DAC7718::Types::ShiftRegisterBits{ 0b100000111111111111110000 }
     );
@@ -62,7 +62,7 @@ TEST(Dac7718OffsetPacket, Increment3dbFrom1)
 TEST(Dac7718OffsetPacket, Decrement3dbFrom0x800)
 {
     GenericDecrement3dbFrom0x800(
-        DAC7718::OffsetDacAPacket{ true, DAC7718::Register::ValueData{0x800} },
+        DAC7718::OffsetDacAPacket{ true, DAC7718::Register::RawValue{0x800} },
         DAC7718::Types::ShiftRegisterBytes{ 0x83, 0x00, 0x00 },
         DAC7718::Types::ShiftRegisterBits{ 0b100000110000000000000000 }
     );
@@ -75,7 +75,7 @@ TEST(Dac7718OffsetPacket, Decrement3dbFrom0x800)
 TEST(Dac7718OffsetPacket, Decrement3dbFrom0xFFF)
 {
     GenericDecrement3dbFrom0xFFF(
-        DAC7718::OffsetDacAPacket{ true, DAC7718::Register::ValueData{0xFFF} },
+        DAC7718::OffsetDacAPacket{ true, DAC7718::Register::RawValue{0xFFF} },
         DAC7718::Types::ShiftRegisterBytes{ 0x83, 0x00, 0x00 },
         DAC7718::Types::ShiftRegisterBits{ 0b100000110000000000000000 }
     );

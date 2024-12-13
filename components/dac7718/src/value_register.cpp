@@ -1,9 +1,9 @@
-#include <abstract_value_register.hpp>
+#include <value_register.hpp>
 
 namespace DAC7718 {
-namespace Internal {
+namespace Register {
 
-void AbstractValueRegister::operator++(int) 
+void RawValue::operator++(int) 
 {
     // prevent wrap around to 0x0
     if (value() == (MAX - 1)) { return; }
@@ -25,7 +25,7 @@ void AbstractValueRegister::operator++(int)
  * @brief Decrement by inverting all bits up to the first "1" LSB.
  * 
  */
-void AbstractValueRegister::operator--(int) 
+void RawValue::operator--(int) 
 {
     // prevent wrap around to 0xFFF
     if (value() == 0) { return; }
@@ -46,7 +46,7 @@ void AbstractValueRegister::operator--(int)
     }
 }
 
-void AbstractValueRegister::increase_3db()
+void RawValue::increase_3db()
 {
     // multiplying zero does nothing so set to 0x1
     if (m_bits.none()) { m_bits[0] = 1; } 
@@ -56,10 +56,10 @@ void AbstractValueRegister::increase_3db()
     else { m_bits <<= 1; }
 }
 
-void AbstractValueRegister::decrease_3db()
+void RawValue::decrease_3db()
 {
     m_bits >>= 1;
 }
 
-} // namespace Internal
+} // namespace Register
 } // namespace DAC7718 

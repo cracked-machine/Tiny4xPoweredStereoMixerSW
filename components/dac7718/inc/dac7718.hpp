@@ -8,7 +8,7 @@
 #include <config_option_register.hpp>
 #include <monitor_option_register.hpp>
 #include <gpio_option_register.hpp>
-#include <offset_value_register.hpp>
+#include <value_register.hpp>
 #include <spimode_option_register.hpp>
 
 namespace DAC7718 {
@@ -214,10 +214,10 @@ public:
  * @brief OffsetDacA packet class
  * 
  */
-class OffsetDacAPacket : public Internal::Packet<Register::ValueData>
+class OffsetDacAPacket : public Internal::Packet<Register::RawValue>
 {
 public:
-    OffsetDacAPacket(bool rw, Register::ValueData data = Register::ValueData())
+    OffsetDacAPacket(bool rw, Register::RawValue data = Register::RawValue())
     : Packet(rw, Internal::AddressType::Reg::OFFSET_DAC_A, std::move(data))
     {
     }
@@ -227,19 +227,19 @@ public:
  * @brief OffsetDacB packet class
  * 
  */
-class OffsetDacBPacket : public Internal::Packet<Register::ValueData>
+class OffsetDacBPacket : public Internal::Packet<Register::RawValue>
 {
 public:
-    OffsetDacBPacket(bool rw, Register::ValueData data = Register::ValueData())
+    OffsetDacBPacket(bool rw, Register::RawValue data = Register::RawValue())
     : Packet(rw, Internal::AddressType::Reg::OFFSET_DAC_A, std::move(data))
     {
     }
 };
 
-class BroadcastPacket : public Internal::Packet<Register::ValueData>
+class BroadcastPacket : public Internal::Packet<Register::RawValue>
 {
 public:
-    BroadcastPacket(bool rw, Register::ValueData data = Register::ValueData())
+    BroadcastPacket(bool rw, Register::RawValue data = Register::RawValue())
     : Packet(rw, Internal::AddressType::Reg::BROADCAST, std::move(data))
     {
     }

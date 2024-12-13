@@ -4,17 +4,16 @@
 #include <abstract_register.hpp>
 
 namespace DAC7718 {
-namespace Internal {
+namespace Register {
 
 /**
  * @brief Abstract class for value register. Do not use this type directly.
  * 
  */
-class AbstractValueRegister : public AbstractDataRegister
+class RawValue : public Internal::AbstractDataRegister
 {
 public: 
-    AbstractValueRegister() = default;
-    AbstractValueRegister(std::bitset<WIDTH> val) { m_bits = std::move(val); }
+    RawValue(std::bitset<WIDTH> val = 0x0) { m_bits = std::move(val); }
 
     static constexpr size_t MAX = (2 << (WIDTH-1)) ; // 4096
 
@@ -31,9 +30,12 @@ public:
     void increase_3db();
 
     void decrease_3db();
+
+    std::bitset<WIDTH> get() const { return m_bits; }
+    bool test(size_t pos) const { return m_bits.test(pos); }
 };
 
-} // namespace Internal 
+} // namespace Register 
 } // namespace DAC7718
 
 

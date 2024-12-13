@@ -10,7 +10,7 @@ else()
         /workspaces/Tiny4xPoweredStereoMixerSW/components/dac7718/tests/test_spimode_register.cpp
         /workspaces/Tiny4xPoweredStereoMixerSW/components/dac7718/tests/test_broadcast_register.cpp
         
-        /workspaces/Tiny4xPoweredStereoMixerSW/components/dac7718/src/abstract_value_register.cpp
+        /workspaces/Tiny4xPoweredStereoMixerSW/components/dac7718/src/value_register.cpp
         /workspaces/Tiny4xPoweredStereoMixerSW/components/dac7718/src/config_option_register.cpp
         /workspaces/Tiny4xPoweredStereoMixerSW/components/dac7718/src/gpio_option_register.cpp
         /workspaces/Tiny4xPoweredStereoMixerSW/components/dac7718/src/monitor_option_register.cpp
