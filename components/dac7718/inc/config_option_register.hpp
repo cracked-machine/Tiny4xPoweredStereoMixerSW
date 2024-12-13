@@ -101,6 +101,8 @@ public:
 };
 
 } // namespace Register
+
+
 } // namespace DAC7718
 
 

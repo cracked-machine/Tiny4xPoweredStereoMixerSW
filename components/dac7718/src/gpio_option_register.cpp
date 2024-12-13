@@ -3,12 +3,12 @@
 
 namespace DAC7718 {
 
-template<> GeneralPurposeIOPacket::Packet(bool rw, Register::GeneralPurposeIO data)
-{
-    m_rwbit = rw;
-    m_addr = AddressType::Reg::GPIO;
-    m_data = std::move(data);
-}
+// template<> GeneralPurposeIOPacket::Packet(bool rw, Register::GeneralPurposeIO data)
+// {
+//     m_rwbit = rw;
+//     m_addr = AddressType::Reg::GPIO;
+//     m_data = std::move(data);
+// }
 
 namespace Register {
 

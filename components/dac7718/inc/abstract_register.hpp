@@ -16,11 +16,11 @@ public:
     static const size_t OFFSET{4};
 
     AbstractDataRegister() = default; 
-    AbstractDataRegister& operator=(const AbstractDataRegister &other) 
-    { 
-        m_bits = other.m_bits;
-        return *this;
-    }
+    // AbstractDataRegister& operator=(const AbstractDataRegister &other) 
+    // { 
+    //     m_bits = other.m_bits;
+    //     return *this;
+    // }
 
     /**
      * @brief Construct a new Field object

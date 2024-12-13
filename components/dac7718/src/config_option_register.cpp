@@ -9,13 +9,13 @@ namespace DAC7718 {
  * @tparam  The data register type
  * @param rw The read write bit
  */
-template<> ConfigPacket::Packet(bool rw, Register::Config data)
-{
-    m_rwbit = rw;
-    m_addr = AddressType::Reg::CONFIG;
-    m_data = std::move(data);
+// template<> ConfigPacket::Packet(bool rw, Register::Config data)
+// {
+//     m_rwbit = rw;
+//     m_addr = AddressType::Reg::CONFIG;
+//     m_data = std::move(data);
 
-}
+// }
 
 namespace Register {
 

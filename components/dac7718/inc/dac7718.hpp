@@ -9,6 +9,7 @@
 #include <monitor_option_register.hpp>
 #include <gpio_option_register.hpp>
 #include <offset_value_register.hpp>
+#include <address_register.hpp>
 
 namespace DAC7718 {
 namespace Types {
@@ -60,7 +61,15 @@ public:
      * @param rw The read write bit
      * @param data The data field type. Implicitly uses the type's constructor defaults.
      */
-    Packet(bool rw, DATATYPE data = DATATYPE());
+    Packet(bool rw, Internal::AddressType::Reg addr_type, DATATYPE data = DATATYPE())
+    {
+        m_rwbit = rw;
+        m_addr = addr_type;
+        m_data = std::move(data);
+    }
+    // Packet(bool rw, AddressType addr_type, DATATYPE data = DATATYPE()):
+    //     m_addr{addr_type}
+    // {}
 
     /**
      * @brief Serialize 24-bit sequence into a 3-byte array and return both
@@ -95,7 +104,7 @@ public:
     }
     
     DATATYPE& data() { return m_data; }
-    
+  
 private:
     /**
      * @brief Serialize this class into a 24-bit sequence and return it
@@ -142,7 +151,7 @@ private:
      | 20 | 19 | 18 | 17 | 16 |
      * 
      */
-    AddressType::Reg m_addr;
+    AddressType::Reg m_addr;  
 
     /**
      * @brief 12 bits of Data. (DB15:DB4)
@@ -166,28 +175,70 @@ private:
 } // namespace Internal
 
 /**
- * @brief Type alias for Configuraion packets
+ * @brief Configuraion packet class
  * 
  */
-using ConfigPacket = Internal::Packet<Register::Config>;
+class ConfigPacket : public Internal::Packet<Register::Config>
+{
+public:
+    ConfigPacket(bool rw, Register::Config data = Register::Config{})
+    : Packet(rw, Internal::AddressType::Reg::CONFIG, data)
+    {
+    }
+
+};
 
 /**
- * @brief Type alias for GPIO packets
+ * @brief GPIO packet class
  * 
  */
-using GeneralPurposeIOPacket = Internal::Packet<Register::GeneralPurposeIO>;
+class GeneralPurposeIOPacket : public Internal::Packet<Register::GeneralPurposeIO>
+{
+public:
+    GeneralPurposeIOPacket(bool rw, Register::GeneralPurposeIO data = Register::GeneralPurposeIO{})
+    : Packet(rw, Internal::AddressType::Reg::GPIO, data)
+    {
+    }
+};
 
 /**
- * @brief Type alias for Monitor packets
+ * @brief Monitor packet class
  * 
  */
-using MonitorPacket = Internal::Packet<Register::Monitor>;
+class MonitorPacket : public Internal::Packet<Register::Monitor>
+{
+public:
+    MonitorPacket(bool rw, Register::Monitor data = Register::Monitor{})
+    : Packet(rw, Internal::AddressType::Reg::MONITOR, data)
+    {
+    }
+};
 
 /**
- * @brief Type alias for OffsetDac packets
+ * @brief OffsetDacA packet class
  * 
  */
-using OffsetDacAPacket = Internal::Packet<Register::OffsetDac>;
+class OffsetDacAPacket : public Internal::Packet<Register::OffsetDac>
+{
+public:
+    OffsetDacAPacket(bool rw, Register::OffsetDac data = Register::OffsetDac())
+    : Packet(rw, Internal::AddressType::Reg::OFFSET_DAC_A, std::move(data))
+    {
+    }
+};
+
+/**
+ * @brief OffsetDacB packet class
+ * 
+ */
+class OffsetDacBPacket : public Internal::Packet<Register::OffsetDac>
+{
+public:
+    OffsetDacBPacket(bool rw, Register::OffsetDac data = Register::OffsetDac())
+    : Packet(rw, Internal::AddressType::Reg::OFFSET_DAC_A, std::move(data))
+    {
+    }
+};
 
 } // namespace DAC7718
 

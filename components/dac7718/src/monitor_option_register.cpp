@@ -3,12 +3,12 @@
 
 namespace DAC7718 {
 
-template<> MonitorPacket::Packet(bool rw, Register::Monitor data)
-{
-    m_rwbit = rw;
-    m_addr = AddressType::Reg::MONITOR;
-    m_data = std::move(data);
-}
+// template<> MonitorPacket::Packet(bool rw, Register::Monitor data)
+// {
+//     m_rwbit = rw;
+//     m_addr = AddressType::Reg::MONITOR;
+//     m_data = std::move(data);
+// }
 
 namespace Register {
 
