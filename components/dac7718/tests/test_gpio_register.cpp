@@ -2,7 +2,7 @@
 #include <dac7718.hpp>
 #include <helpers.hpp>
 
-TEST(Dac7718GeneralPurposeIOPacket, Defaults)
+TEST(Dac7718__GeneralPurposeIOPacket, Defaults)
 {
     DAC7718::GeneralPurposeIOPacket gpio_packet{ 
         true
@@ -19,7 +19,7 @@ TEST(Dac7718GeneralPurposeIOPacket, Defaults)
     ASSERT_EQ(packet_bytes,expected_sr_bytes);
 }
 
-TEST(Dac7718GeneralPurposeIOPacket, GPIO2_low)
+TEST(Dac7718__GeneralPurposeIOPacket, GPIO2_low)
 {
     DAC7718::GeneralPurposeIOPacket gpio_packet{ 
         true
@@ -37,7 +37,7 @@ TEST(Dac7718GeneralPurposeIOPacket, GPIO2_low)
     ASSERT_EQ(packet_bytes,expected_sr_bytes);
 }
 
-TEST(Dac7718GeneralPurposeIOPacket, GPIO1_low)
+TEST(Dac7718__GeneralPurposeIOPacket, GPIO1_low)
 {
     DAC7718::GeneralPurposeIOPacket gpio_packet{ 
         true
@@ -55,7 +55,7 @@ TEST(Dac7718GeneralPurposeIOPacket, GPIO1_low)
     ASSERT_EQ(packet_bytes,expected_sr_bytes);
 }
 
-TEST(Dac7718GeneralPurposeIOPacket, GPIO0_low)
+TEST(Dac7718__GeneralPurposeIOPacket, GPIO0_low)
 {
     DAC7718::GeneralPurposeIOPacket gpio_packet{ 
         true
@@ -73,7 +73,7 @@ TEST(Dac7718GeneralPurposeIOPacket, GPIO0_low)
     ASSERT_EQ(packet_bytes,expected_sr_bytes);
 }
 
-TEST(Dac7718GeneralPurposeIOPacket, all_low)
+TEST(Dac7718__GeneralPurposeIOPacket, all_low)
 {
     DAC7718::GeneralPurposeIOPacket gpio_packet{ 
         true

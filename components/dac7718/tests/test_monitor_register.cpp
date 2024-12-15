@@ -2,7 +2,7 @@
 #include <dac7718.hpp>
 #include <helpers.hpp>
 
-TEST(Dac7718MonitorPacket, Defaults)
+TEST(Dac7718__MonitorPacket, Defaults)
 {
     DAC7718::MonitorPacket monitor_packet{ true };
 
@@ -17,7 +17,7 @@ TEST(Dac7718MonitorPacket, Defaults)
     ASSERT_EQ(packet_bytes,expected_sr_bytes);
 }
 
-TEST(Dac7718MonitorPacket, REFB_Buffer)
+TEST(Dac7718__MonitorPacket, REFB_Buffer)
 {
     DAC7718::MonitorPacket monitor_packet{ 
         true, 
@@ -35,7 +35,7 @@ TEST(Dac7718MonitorPacket, REFB_Buffer)
     ASSERT_EQ(packet_bytes,expected_sr_bytes);
 }
 
-TEST(Dac7718MonitorPacket, REFA_Buffer)
+TEST(Dac7718__MonitorPacket, REFA_Buffer)
 {
     DAC7718::MonitorPacket monitor_packet{ 
         true, 
@@ -53,7 +53,7 @@ TEST(Dac7718MonitorPacket, REFA_Buffer)
     ASSERT_EQ(packet_bytes,expected_sr_bytes);
 }
 
-TEST(Dac7718MonitorPacket, OffsetDacB)
+TEST(Dac7718__MonitorPacket, OffsetDacB)
 {
     DAC7718::MonitorPacket monitor_packet{ 
         true, 
@@ -71,7 +71,7 @@ TEST(Dac7718MonitorPacket, OffsetDacB)
     ASSERT_EQ(packet_bytes,expected_sr_bytes);
 }
 
-TEST(Dac7718MonitorPacket, OffsetDacA)
+TEST(Dac7718__MonitorPacket, OffsetDacA)
 {
     DAC7718::MonitorPacket monitor_packet{ 
         true, 
@@ -89,7 +89,7 @@ TEST(Dac7718MonitorPacket, OffsetDacA)
     ASSERT_EQ(packet_bytes,expected_sr_bytes);
 }
 
-TEST(Dac7718MonitorPacket, Ain0)
+TEST(Dac7718__MonitorPacket, Ain0)
 {
     DAC7718::MonitorPacket monitor_packet{ 
         true, 
@@ -107,7 +107,7 @@ TEST(Dac7718MonitorPacket, Ain0)
     ASSERT_EQ(packet_bytes,expected_sr_bytes);
 }
 
-TEST(Dac7718MonitorPacket, Ain1)
+TEST(Dac7718__MonitorPacket, Ain1)
 {
     DAC7718::MonitorPacket monitor_packet{ 
         true, 
@@ -125,7 +125,7 @@ TEST(Dac7718MonitorPacket, Ain1)
     ASSERT_EQ(packet_bytes,expected_sr_bytes);
 }
 
-TEST(Dac7718MonitorPacket, DAC0)
+TEST(Dac7718__MonitorPacket, DAC0)
 {
     DAC7718::MonitorPacket monitor_packet{ 
         true, 
@@ -143,7 +143,7 @@ TEST(Dac7718MonitorPacket, DAC0)
     ASSERT_EQ(packet_bytes,expected_sr_bytes);
 }
 
-TEST(Dac7718MonitorPacket, DAC1)
+TEST(Dac7718__MonitorPacket, DAC1)
 {
     DAC7718::MonitorPacket monitor_packet{ 
         true, 
@@ -161,7 +161,7 @@ TEST(Dac7718MonitorPacket, DAC1)
     ASSERT_EQ(packet_bytes,expected_sr_bytes);
 }
 
-TEST(Dac7718MonitorPacket, DAC2)
+TEST(Dac7718__MonitorPacket, DAC2)
 {
     DAC7718::MonitorPacket monitor_packet{ 
         true, 
@@ -179,7 +179,7 @@ TEST(Dac7718MonitorPacket, DAC2)
     ASSERT_EQ(packet_bytes,expected_sr_bytes);
 }
 
-TEST(Dac7718MonitorPacket, DAC3)
+TEST(Dac7718__MonitorPacket, DAC3)
 {
     DAC7718::MonitorPacket monitor_packet{ 
         true, 
@@ -197,7 +197,7 @@ TEST(Dac7718MonitorPacket, DAC3)
     ASSERT_EQ(packet_bytes,expected_sr_bytes);
 }
 
-TEST(Dac7718MonitorPacket, DAC4)
+TEST(Dac7718__MonitorPacket, DAC4)
 {
     DAC7718::MonitorPacket monitor_packet{ 
         true, 
@@ -215,7 +215,7 @@ TEST(Dac7718MonitorPacket, DAC4)
     ASSERT_EQ(packet_bytes,expected_sr_bytes);
 }
 
-TEST(Dac7718MonitorPacket, DAC5)
+TEST(Dac7718__MonitorPacket, DAC5)
 {
     DAC7718::MonitorPacket monitor_packet{ 
         true, 
@@ -233,7 +233,7 @@ TEST(Dac7718MonitorPacket, DAC5)
     ASSERT_EQ(packet_bytes,expected_sr_bytes);
 }
 
-TEST(Dac7718MonitorPacket, DAC6)
+TEST(Dac7718__MonitorPacket, DAC6)
 {
     DAC7718::MonitorPacket monitor_packet{ 
         true, 
@@ -251,7 +251,7 @@ TEST(Dac7718MonitorPacket, DAC6)
     ASSERT_EQ(packet_bytes,expected_sr_bytes);
 }
 
-TEST(Dac7718MonitorPacket, DAC7)
+TEST(Dac7718__MonitorPacket, DAC7)
 {
     DAC7718::MonitorPacket monitor_packet{ 
         true, 

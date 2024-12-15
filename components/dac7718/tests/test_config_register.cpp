@@ -2,7 +2,7 @@
 #include <dac7718.hpp>
 #include <helpers.hpp>
 
-TEST(Dac7718ConfigPacket, Defaults)
+TEST(Dac7718__ConfigPacket, Defaults)
 {
     DAC7718::ConfigPacket config_packet{ true };
 
@@ -18,7 +18,7 @@ TEST(Dac7718ConfigPacket, Defaults)
 
 }
 
-TEST(Dac7718ConfigPacket, InputRegister)
+TEST(Dac7718__ConfigPacket, InputRegister)
 {
     DAC7718::ConfigPacket config_packet{ true };
  
@@ -36,7 +36,7 @@ TEST(Dac7718ConfigPacket, InputRegister)
 
 }
 
-TEST(Dac7718ConfigPacket, LatchData)
+TEST(Dac7718__ConfigPacket, LatchData)
 {
     DAC7718::ConfigPacket config_packet{ true };
 
@@ -54,7 +54,7 @@ TEST(Dac7718ConfigPacket, LatchData)
     
 }
 
-TEST(Dac7718ConfigPacket, Reset)
+TEST(Dac7718__ConfigPacket, Reset)
 {
     DAC7718::ConfigPacket config_packet{ true };
 
@@ -72,7 +72,7 @@ TEST(Dac7718ConfigPacket, Reset)
     
 }
 
-TEST(Dac7718ConfigPacket, PwrDwnA)
+TEST(Dac7718__ConfigPacket, PwrDwnA)
 {
     DAC7718::ConfigPacket config_packet{ true };
 
@@ -90,7 +90,7 @@ TEST(Dac7718ConfigPacket, PwrDwnA)
     
 }
 
-TEST(Dac7718ConfigPacket, PwrDwnB)
+TEST(Dac7718__ConfigPacket, PwrDwnB)
 {
     DAC7718::ConfigPacket config_packet{ true };
 
@@ -108,7 +108,7 @@ TEST(Dac7718ConfigPacket, PwrDwnB)
     
 }
 
-TEST(Dac7718ConfigPacket, SCE)
+TEST(Dac7718__ConfigPacket, SCE)
 {
     DAC7718::ConfigPacket config_packet{ true };
 
@@ -126,7 +126,7 @@ TEST(Dac7718ConfigPacket, SCE)
     
 }
 
-TEST(Dac7718ConfigPacket, GainA)
+TEST(Dac7718__ConfigPacket, GainA)
 {
     DAC7718::ConfigPacket config_packet{ true };
 
@@ -144,7 +144,7 @@ TEST(Dac7718ConfigPacket, GainA)
     
 }
 
-TEST(Dac7718ConfigPacket, GainB)
+TEST(Dac7718__ConfigPacket, GainB)
 {
     DAC7718::ConfigPacket config_packet{ true };
 
@@ -162,7 +162,7 @@ TEST(Dac7718ConfigPacket, GainB)
     
 }
 
-TEST(Dac7718ConfigPacket, SDO)
+TEST(Dac7718__ConfigPacket, SDO)
 {
     DAC7718::ConfigPacket config_packet{ true };
 
@@ -180,7 +180,7 @@ TEST(Dac7718ConfigPacket, SDO)
     
 }
 
-TEST(Dac7718ConfigPacket, NOOPWrite)
+TEST(Dac7718__ConfigPacket, NOOPWrite)
 {
     DAC7718::ConfigPacket config_packet{ true };
 
@@ -198,7 +198,7 @@ TEST(Dac7718ConfigPacket, NOOPWrite)
     
 }
 
-TEST(Dac7718ConfigPacket, AuxWakeup)
+TEST(Dac7718__ConfigPacket, AuxWakeup)
 {
     DAC7718::ConfigPacket config_packet{ true };
 

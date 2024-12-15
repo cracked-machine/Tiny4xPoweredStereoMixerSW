@@ -6,7 +6,7 @@
  *        packet bits should not wrap back to 0x0 
  * 
  */
-TEST(Dac7718Gain6Packet, IncrementTo0xFFFWrap)
+TEST(Dac7718_Gain6Packet, IncrementTo0xFFFWrap)
 {
     GenericIncrementTo0xFFFWrap(
         DAC7718::GainData6Packet{ true },
@@ -20,7 +20,7 @@ TEST(Dac7718Gain6Packet, IncrementTo0xFFFWrap)
  *        packet bits should not wrap back to 0xFFF 
  * 
  */
-TEST(Dac7718Gain6Packet, DecrementToZeroWrap)
+TEST(Dac7718_Gain6Packet, DecrementToZeroWrap)
 {
     GenericDecrementToZeroWrap(
         DAC7718::GainData6Packet{ true, DAC7718::Register::RawValue{0xFFF} },
@@ -33,7 +33,7 @@ TEST(Dac7718Gain6Packet, DecrementToZeroWrap)
  * @brief Test increment3db function, check it doesn't wrap at 0x800 or 0xFFF
  * 
  */
-TEST(Dac7718Gain6Packet, Increment3dbFrom0)
+TEST(Dac7718_Gain6Packet, Increment3dbFrom0)
 {
     GenericIncrement3dbFrom0(
         DAC7718::GainData6Packet{ true },
@@ -46,7 +46,7 @@ TEST(Dac7718Gain6Packet, Increment3dbFrom0)
  * @brief Test increment3db function, check it doesn't wrap at 0x800 or 0xFFF
  * 
  */
-TEST(Dac7718Gain6Packet, Increment3dbFrom1)
+TEST(Dac7718_Gain6Packet, Increment3dbFrom1)
 {
     GenericIncrement3dbFrom1(
         DAC7718::GainData6Packet{ true, DAC7718::Register::RawValue{0x001} },
@@ -59,7 +59,7 @@ TEST(Dac7718Gain6Packet, Increment3dbFrom1)
  * @brief Test decrement3db function, check it doesn't wrap at 0x0
  * 
  */
-TEST(Dac7718Gain6Packet, Decrement3dbFrom0x800)
+TEST(Dac7718_Gain6Packet, Decrement3dbFrom0x800)
 {
     GenericDecrement3dbFrom0x800(
         DAC7718::GainData6Packet{ true, DAC7718::Register::RawValue{0x800} },
@@ -72,7 +72,7 @@ TEST(Dac7718Gain6Packet, Decrement3dbFrom0x800)
  * @brief Test decrement3db function, check it doesn't wrap at 0x0
  * 
  */
-TEST(Dac7718Gain6Packet, Decrement3dbFrom0xFFF)
+TEST(Dac7718_Gain6Packet, Decrement3dbFrom0xFFF)
 {
     GenericDecrement3dbFrom0xFFF(
         DAC7718::GainData6Packet{ true, DAC7718::Register::RawValue{0xFFF} },

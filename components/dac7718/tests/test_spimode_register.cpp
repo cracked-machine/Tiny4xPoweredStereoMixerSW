@@ -2,7 +2,7 @@
 #include <dac7718.hpp>
 #include <helpers.hpp>
 
-TEST(Dac7718SpiModePacket, Defaults)
+TEST(Dac7718__SpiModePacket, Defaults)
 {
     DAC7718::SpiModePacket spimode_packet{ true };
 
@@ -18,7 +18,7 @@ TEST(Dac7718SpiModePacket, Defaults)
 
 }
 
-TEST(Dac7718SpiModePacket, SleepEnabled)
+TEST(Dac7718__SpiModePacket, SleepEnabled)
 {
     DAC7718::SpiModePacket spimode_packet{ true, DAC7718::Register::SpiMode::Preset::SLEEP };
     
