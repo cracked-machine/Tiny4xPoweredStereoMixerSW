@@ -26,6 +26,14 @@ else()
         /workspaces/Tiny4xPoweredStereoMixerSW/components/dac7718/tests/test_zero5_register.cpp
         /workspaces/Tiny4xPoweredStereoMixerSW/components/dac7718/tests/test_zero6_register.cpp
         /workspaces/Tiny4xPoweredStereoMixerSW/components/dac7718/tests/test_zero7_register.cpp
+        /workspaces/Tiny4xPoweredStereoMixerSW/components/dac7718/tests/test_gain0_register.cpp
+        /workspaces/Tiny4xPoweredStereoMixerSW/components/dac7718/tests/test_gain1_register.cpp
+        /workspaces/Tiny4xPoweredStereoMixerSW/components/dac7718/tests/test_gain2_register.cpp
+        /workspaces/Tiny4xPoweredStereoMixerSW/components/dac7718/tests/test_gain3_register.cpp
+        /workspaces/Tiny4xPoweredStereoMixerSW/components/dac7718/tests/test_gain4_register.cpp
+        /workspaces/Tiny4xPoweredStereoMixerSW/components/dac7718/tests/test_gain5_register.cpp
+        /workspaces/Tiny4xPoweredStereoMixerSW/components/dac7718/tests/test_gain6_register.cpp
+        /workspaces/Tiny4xPoweredStereoMixerSW/components/dac7718/tests/test_gain7_register.cpp
         
         /workspaces/Tiny4xPoweredStereoMixerSW/components/dac7718/src/value_register.cpp
         /workspaces/Tiny4xPoweredStereoMixerSW/components/dac7718/src/config_option_register.cpp
