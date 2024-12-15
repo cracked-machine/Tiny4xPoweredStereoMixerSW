@@ -10,6 +10,14 @@ else()
         /workspaces/Tiny4xPoweredStereoMixerSW/components/dac7718/tests/test_offset_b_register.cpp
         /workspaces/Tiny4xPoweredStereoMixerSW/components/dac7718/tests/test_spimode_register.cpp
         /workspaces/Tiny4xPoweredStereoMixerSW/components/dac7718/tests/test_broadcast_register.cpp
+        /workspaces/Tiny4xPoweredStereoMixerSW/components/dac7718/tests/test_inputdata0_register.cpp
+        /workspaces/Tiny4xPoweredStereoMixerSW/components/dac7718/tests/test_inputdata1_register.cpp
+        /workspaces/Tiny4xPoweredStereoMixerSW/components/dac7718/tests/test_inputdata2_register.cpp
+        /workspaces/Tiny4xPoweredStereoMixerSW/components/dac7718/tests/test_inputdata3_register.cpp
+        /workspaces/Tiny4xPoweredStereoMixerSW/components/dac7718/tests/test_inputdata4_register.cpp
+        /workspaces/Tiny4xPoweredStereoMixerSW/components/dac7718/tests/test_inputdata5_register.cpp
+        /workspaces/Tiny4xPoweredStereoMixerSW/components/dac7718/tests/test_inputdata6_register.cpp
+        /workspaces/Tiny4xPoweredStereoMixerSW/components/dac7718/tests/test_inputdata7_register.cpp
         
         /workspaces/Tiny4xPoweredStereoMixerSW/components/dac7718/src/value_register.cpp
         /workspaces/Tiny4xPoweredStereoMixerSW/components/dac7718/src/config_option_register.cpp
