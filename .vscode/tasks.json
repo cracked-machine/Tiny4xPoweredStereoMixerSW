@@ -35,6 +35,24 @@
             "command": "${RMBUILD} && ${SETENV} && ${SETTARGET} && idf.py fullclean"
         },
         {
+            // openocd -f board/esp32s3-builtin.cfg
+            "label": "launch openocd",
+            "type": "shell",
+            "command": "${SETENV} && openocd -f board/esp32s3-builtin.cfg"
+        },
+        {
+            "label": "kill openocd",
+            "type": "shell",
+            "command":[
+               "pkill -f openocd && exit 0"
+            ],
+            "presentation": {
+                "reveal": "silent",
+                "panel": "dedicated",
+                "close": true,
+            }
+        },
+        {
             "label": "flash",
             "type": "shell",
             "command": "${SETENV} && ${SETTARGET} && idf.py flash"
